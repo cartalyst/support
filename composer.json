@@ -1,0 +1,47 @@
+{
+	"name": "cartalyst/support",
+	"description": "Support helpers.",
+	"keywords": [
+		"support",
+		"helper",
+		"laravel",
+		"cartalyst"
+	],
+	"license": "proprietary",
+	"authors": [
+	  {
+		"name": "Cartalyst LLC",
+		"email": "help@cartalyst.com"
+	  },
+	  {
+		"name": "Bruno Gaspar",
+		"email": "bruno.gaspar@cartalyst.com",
+		"role": "Developer"
+	  },
+	  {
+		"name": "Dan Syme",
+		"email": "dan.syme@cartalyst.com",
+		"role": "Project Lead"
+	  },
+	  {
+		"name": "Suhayb Wardany",
+		"email": "su.wardany@cartalyst.com",
+		"role": "Developer"
+	  }
+	],
+	"require": {
+		"php": ">=5.4.0"
+	},
+	"autoload": {
+		"psr-4": {
+			"Cartalyst\\Support\\": ""
+		}
+	},
+	"extra": {
+		"components": "package",
+		"branch-alias": {
+			"dev-master": "1.0.x-dev"
+		}
+	},
+	"minimum-stability": "dev"
+}
