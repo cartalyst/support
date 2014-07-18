@@ -88,9 +88,7 @@ trait ValidationTrait {
 
 		$rules = new Fluent($this->getBindedRules());
 
-		$validationResolver = Validator::make($data, $rules->getAttributes());
-
-		return $validationResolver;
+		return Validator::make($data, $rules->getAttributes());
 	}
 
 	/**
