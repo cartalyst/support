@@ -30,11 +30,12 @@
 	  }
 	],
 	"require": {
-		"php": ">=5.4.0"
+		"php": ">=5.4.0",
+		"illuminate/support": "~4.1"
 	},
 	"autoload": {
 		"psr-4": {
-			"Cartalyst\\Support\\": ""
+			"Cartalyst\\Support\\": "src/"
 		}
 	},
 	"extra": {
