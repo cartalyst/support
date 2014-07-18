@@ -23,11 +23,11 @@ use Illuminate\Support\Facades\Validator;
 trait ValidationTrait {
 
 	/**
-	 * The registered scenarios
+	 * The registered scenario.
 	 *
 	 * @var array
 	 */
-	protected $scenarios = [];
+	protected $scenario = [];
 
 	/**
 	 * The registered bindings
@@ -47,7 +47,7 @@ trait ValidationTrait {
 	{
 		$method = 'on'.ucfirst($scenario);
 
-		$this->scenarios = [
+		$this->scenario = [
 			'on'        => method_exists($this, $method) ? $method : null,
 			'arguments' => $arguments,
 		];
@@ -76,14 +76,14 @@ trait ValidationTrait {
 	 */
 	public function executeValidation(array $data)
 	{
-		if (is_null($this->scenarios))
+		if (is_null($this->scenario))
 		{
 			$this->onScenario('any');
 		}
 
-		if ( ! is_null($method = $this->scenarios['on']))
+		if ( ! is_null($method = $this->scenario['on']))
 		{
-			call_user_func_array([$this, $method], $this->scenarios['arguments']);
+			call_user_func_array([$this, $method], $this->scenario['arguments']);
 		}
 
 		$rules = new Fluent($this->getBindedRules());
