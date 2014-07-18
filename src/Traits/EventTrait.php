@@ -29,9 +29,16 @@ trait EventTrait {
 	protected $dispatcher;
 
 	/**
+	 * The event dispatcher status.
+	 *
+	 * @var bool
+	 */
+	protected $dispatchingStatus = true;
+
+	/**
 	 * Returns the event dispatcher.
 	 *
-	 * @return string
+	 * @return \Illuminate\Events\Dispatcher
 	 */
 	public function getDispatcher()
 	{
@@ -41,7 +48,7 @@ trait EventTrait {
 	/**
 	 * Sets the event dispatcher instance.
 	 *
-	 * @param  string  $dispatcher
+	 * @param  \Illuminate\Events\Dispatcher  $dispatcher
 	 * @return mixed
 	 */
 	public function setDispatcher(Dispatcher $dispatcher)
@@ -52,7 +59,54 @@ trait EventTrait {
 	}
 
 	/**
-	 * Fire a Sentinel event.
+	 * Returns the event dispatcher status.
+	 *
+	 * @return mixed
+	 */
+	public function getDispatcherStatus()
+	{
+		return $this->dispatchingStatus;
+	}
+
+	/**
+	 * Sets the event dispatcher status.
+	 *
+	 * @param  bool  $status
+	 * @return mixed
+	 */
+	public function setDispatcherStatus($status)
+	{
+		$this->dispatchingStatus = (bool) $status;
+
+		return $this;
+	}
+
+	/**
+	 * Enables the event dispatcher.
+	 *
+	 * @return mixed
+	 */
+	public function enableDispatcher()
+	{
+		$this->dispatchingStatus = true;
+
+		return $this;
+	}
+
+	/**
+	 * Disables the event dispatcher.
+	 *
+	 * @return mixed
+	 */
+	public function disableDispatcher()
+	{
+		$this->dispatchingStatus = false;
+
+		return $this;
+	}
+
+	/**
+	 * Fires an event.
 	 *
 	 * @param  string  $event
 	 * @param  mixed  $payload
@@ -61,7 +115,11 @@ trait EventTrait {
 	 */
 	protected function fireEvent($event, $payload = [], $halt = false)
 	{
-		if ( ! $dispatcher = $this->dispatcher) return;
+		$dispatcher = $this->dispatcher;
+
+		$status = $this->dispatchingStatus;
+
+		if ( ! $dispatcher || $status === false) return;
 
 		$method = $halt ? 'until' : 'fire';
 
