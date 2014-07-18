@@ -53,11 +53,13 @@ trait RepositoryTrait {
 	 * Runtime override of the model.
 	 *
 	 * @param  string  $model
-	 * @return void
+	 * @return mixed
 	 */
 	public function setModel($model)
 	{
 		$this->model = $model;
+
+		return $this;
 	}
 
 }

@@ -17,14 +17,39 @@
  * @link       http://cartalyst.com
  */
 
+use Illuminate\Events\Dispatcher;
+
 trait EventTrait {
 
 	/**
-	 * Event dispatcher.
+	 * The event dispatcher instance.
 	 *
 	 * @var \Illuminate\Events\Dispatcher
 	 */
 	protected $dispatcher;
+
+	/**
+	 * Returns the event dispatcher.
+	 *
+	 * @return string
+	 */
+	public function getDispatcher()
+	{
+		return $this->dispatcher;
+	}
+
+	/**
+	 * Sets the event dispatcher instance.
+	 *
+	 * @param  string  $dispatcher
+	 * @return mixed
+	 */
+	public function setDispatcher(Dispatcher $dispatcher)
+	{
+		$this->dispatcher = $dispatcher;
+
+		return $this;
+	}
 
 	/**
 	 * Fire a Sentinel event.
