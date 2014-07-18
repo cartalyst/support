@@ -86,9 +86,9 @@ trait ValidationTrait {
 			call_user_func_array([$this, $method], $this->scenario['arguments']);
 		}
 
-		$rules = new Fluent($this->getBindedRules());
+		$rules = (new Fluent($this->getBindedRules()))->getAttributes();
 
-		return Validator::make($data, $rules->getAttributes());
+		return Validator::make($data, $rules);
 	}
 
 	/**
