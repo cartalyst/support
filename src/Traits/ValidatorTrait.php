@@ -20,7 +20,7 @@
 use Illuminate\Support\Fluent;
 use Illuminate\Support\Facades\Validator;
 
-trait ValidationTrait {
+trait ValidatorTrait {
 
 	/**
 	 * The registered scenario.
@@ -41,7 +41,7 @@ trait ValidationTrait {
 	 *
 	 * @param  string  $scenario
 	 * @param  array  $arguments
-	 * @return ValidationTrait
+	 * @return ValidatorTrait
 	 */
 	public function onScenario($scenario, array $arguments = [])
 	{
@@ -59,7 +59,7 @@ trait ValidationTrait {
 	 * Register the bindings.
 	 *
 	 * @param  array  $bindings
-	 * @return \Cartalyst\Support\Traits\ValidationTrait
+	 * @return \Cartalyst\Support\Traits\ValidatorTrait
 	 */
 	public function registerBindings(array $bindings)
 	{

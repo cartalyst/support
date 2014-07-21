@@ -17,12 +17,12 @@
  * @link       http://cartalyst.com
  */
 
-use Cartalyst\Support\Traits\ValidationTrait;
+use Cartalyst\Support\Traits\ValidatorTrait;
 use Cartalyst\Support\Contracts\ValidatorInterface;
 
 abstract class Validator implements ValidatorInterface {
 
-	use ValidationTrait;
+	use ValidatorTrait;
 
 	/**
 	 * The validation rules.
