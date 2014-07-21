@@ -17,6 +17,8 @@
  * @link       http://cartalyst.com
  */
 
+use Cartalyst\Support\Contracts\ValidatorInterface;
+
 trait RepositoryTrait {
 
 	/**
@@ -25,6 +27,13 @@ trait RepositoryTrait {
 	 * @var string
 	 */
 	protected $model;
+
+	/**
+	 * The validator instance.
+	 *
+	 * @var \Cartalyst\Support\Contracts\ValidatorInterface
+	 */
+	protected $validator;
 
 	/**
 	 * Create a new instance of the model.
@@ -58,6 +67,29 @@ trait RepositoryTrait {
 	public function setModel($model)
 	{
 		$this->model = $model;
+
+		return $this;
+	}
+
+	/**
+	 * Returns the validator instance.
+	 *
+	 * @return \Cartalyst\Support\Contracts\ValidatorInterface
+	 */
+	public function getValidator()
+	{
+		return $this->validator;
+	}
+
+	/**
+	 * Sets the validator instance.
+	 *
+	 * @param  \Cartalyst\Support\Contracts\ValidatorInterface  $validator
+	 * @return mixed
+	 */
+	public function setValidator(ValidatorInterface $validator)
+	{
+		$this->validator = $validator;
 
 		return $this;
 	}
