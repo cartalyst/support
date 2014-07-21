@@ -81,7 +81,7 @@ trait ValidatorTrait {
 			$this->onScenario('any');
 		}
 
-		if ( ! is_null($method = $this->scenario['on']))
+		if ($method = array_get($this->scenario, 'on', null))
 		{
 			call_user_func_array([$this, $method], $this->scenario['arguments']);
 		}
@@ -110,16 +110,11 @@ trait ValidatorTrait {
 	{
 		$rules = $this->getRules();
 
-		if ( ! empty($this->bindings))
+		foreach ($rules as $key => $value)
 		{
-			foreach ($rules as $key => $value)
+			if ($binding = array_get($this->bindings, $key, null))
 			{
-				if (array_key_exists($key, $this->bindings))
-				{
-					$binding = $this->bindings[$key];
-
-					$rules[$key] = str_replace('{'.$key.'}', $binding, $value);
-				}
+				$rules[$key] = str_replace('{'.$key.'}', $binding, $value);
 			}
 		}
 
