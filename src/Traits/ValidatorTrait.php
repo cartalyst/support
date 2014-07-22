@@ -41,7 +41,7 @@ trait ValidatorTrait {
 	 *
 	 * @param  string  $scenario
 	 * @param  array  $arguments
-	 * @return ValidatorTrait
+	 * @return \Cartalyst\Support\Traits\ValidatorTrait
 	 */
 	public function onScenario($scenario, array $arguments = [])
 	{
