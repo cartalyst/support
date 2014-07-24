@@ -22,13 +22,6 @@ use Cartalyst\Support\Contracts\ValidatorInterface;
 trait RepositoryTrait {
 
 	/**
-	 * The model name.
-	 *
-	 * @var string
-	 */
-	protected $model;
-
-	/**
 	 * The validator instance.
 	 *
 	 * @var \Cartalyst\Support\Contracts\ValidatorInterface
