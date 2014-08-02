@@ -100,6 +100,52 @@ class Mailer {
 	}
 
 	/**
+	 * Returns the Illuminate mailer instance.
+	 *
+	 * @return \Illuminate\Mail\Mailer
+	 */
+	public function getMailer()
+	{
+		return $this->mailer;
+	}
+
+	/**
+	 * Sets the Illuminate mailer instance.
+	 *
+	 * @param  \Illuminate\Mail\Mailer  $mailer
+	 * @return $this
+	 */
+	public function setMailer(IlluminateMailer $mailer)
+	{
+		$this->mailer = $mailer;
+
+		return $this;
+	}
+
+	/**
+	 * Returns the Illuminate config repository instance.
+	 *
+	 * @return \Illuminate\Config\Repository
+	 */
+	public function getConfig()
+	{
+		return $this->config;
+	}
+
+	/**
+	 * Sets the Illuminate config repository instance.
+	 *
+	 * @param  \Illuminate\Config\Repository  $config
+	 * @return $this
+	 */
+	public function setConfig(IlluminateConfig $config)
+	{
+		$this->config = $config;
+
+		return $this;
+	}
+
+	/**
 	 * Returns the from address.
 	 *
 	 * @return array
