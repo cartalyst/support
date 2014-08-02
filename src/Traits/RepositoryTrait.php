@@ -55,7 +55,7 @@ trait RepositoryTrait {
 	 * Runtime override of the model.
 	 *
 	 * @param  string  $model
-	 * @return mixed
+	 * @return $this
 	 */
 	public function setModel($model)
 	{
@@ -78,7 +78,7 @@ trait RepositoryTrait {
 	 * Sets the validator instance.
 	 *
 	 * @param  \Cartalyst\Support\Contracts\ValidatorInterface  $validator
-	 * @return mixed
+	 * @return $this
 	 */
 	public function setValidator(ValidatorInterface $validator)
 	{

@@ -49,7 +49,7 @@ trait EventTrait {
 	 * Sets the event dispatcher instance.
 	 *
 	 * @param  \Illuminate\Events\Dispatcher  $dispatcher
-	 * @return mixed
+	 * @return $this
 	 */
 	public function setDispatcher(Dispatcher $dispatcher)
 	{
@@ -72,7 +72,7 @@ trait EventTrait {
 	 * Sets the event dispatcher status.
 	 *
 	 * @param  bool  $status
-	 * @return mixed
+	 * @return $this
 	 */
 	public function setDispatcherStatus($status)
 	{
@@ -84,7 +84,7 @@ trait EventTrait {
 	/**
 	 * Enables the event dispatcher.
 	 *
-	 * @return mixed
+	 * @return $this
 	 */
 	public function enableDispatcher()
 	{
@@ -96,7 +96,7 @@ trait EventTrait {
 	/**
 	 * Disables the event dispatcher.
 	 *
-	 * @return mixed
+	 * @return $this
 	 */
 	public function disableDispatcher()
 	{

@@ -41,7 +41,7 @@ trait ValidatorTrait {
 	 *
 	 * @param  string  $scenario
 	 * @param  array  $arguments
-	 * @return \Cartalyst\Support\Traits\ValidatorTrait
+	 * @return $this
 	 */
 	public function onScenario($scenario, array $arguments = [])
 	{
@@ -59,7 +59,7 @@ trait ValidatorTrait {
 	 * Register the bindings.
 	 *
 	 * @param  array  $bindings
-	 * @return \Cartalyst\Support\Traits\ValidatorTrait
+	 * @return $this
 	 */
 	public function registerBindings(array $bindings)
 	{
