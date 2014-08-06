@@ -33,7 +33,7 @@ trait EventTrait {
 	 *
 	 * @var bool
 	 */
-	protected $dispatchingStatus = true;
+	protected $dispatcherStatus = true;
 
 	/**
 	 * Returns the event dispatcher.
@@ -61,11 +61,11 @@ trait EventTrait {
 	/**
 	 * Returns the event dispatcher status.
 	 *
-	 * @return mixed
+	 * @return bool
 	 */
 	public function getDispatcherStatus()
 	{
-		return $this->dispatchingStatus;
+		return $this->dispatcherStatus;
 	}
 
 	/**
@@ -76,7 +76,7 @@ trait EventTrait {
 	 */
 	public function setDispatcherStatus($status)
 	{
-		$this->dispatchingStatus = (bool) $status;
+		$this->dispatcherStatus = (bool) $status;
 
 		return $this;
 	}
@@ -88,9 +88,7 @@ trait EventTrait {
 	 */
 	public function enableDispatcher()
 	{
-		$this->dispatchingStatus = true;
-
-		return $this;
+		return $this->setDispatcherStatus(true);
 	}
 
 	/**
@@ -100,9 +98,7 @@ trait EventTrait {
 	 */
 	public function disableDispatcher()
 	{
-		$this->dispatchingStatus = false;
-
-		return $this;
+		return $this->setDispatcherStatus(false);
 	}
 
 	/**
@@ -117,7 +113,7 @@ trait EventTrait {
 	{
 		$dispatcher = $this->dispatcher;
 
-		$status = $this->dispatchingStatus;
+		$status = $this->dispatcherStatus;
 
 		if ( ! $dispatcher || $status === false) return;
 

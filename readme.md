@@ -1,10 +1,13 @@
 # Support
 
-A support toolbelt for Cartalyst.
+[![Build Status](http://ci.cartalyst.com/build-status/svg/18)](http://ci.cartalyst.com/build-status/view/18)
+
+A support package that provides flexible and reusable helper methods and traits for commonly used functionalities.
 
 ## Package Story
 
-..
+- `EventTrait` Common methods and properties for dispatching events.
+- `RepositoryTrait` Common methods and properties for use across repositories.
 
 ## Requirements
 
@@ -12,11 +15,15 @@ A support toolbelt for Cartalyst.
 
 ## Installation
 
-..
+Support is installable with Composer. Read further information on how to install.
+
+[Installation Guide](https://cartalyst.com/manual/support#installation)
 
 ## Documentation
 
-..
+Refer to the following guide on how to use the Support package.
+
+[Documentation](https://cartalyst.com/manual/support)
 
 ## Versioning
 
