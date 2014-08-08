@@ -8,6 +8,11 @@ A support package that provides flexible and reusable helper methods and traits 
 
 Package history and capabilities.
 
+#### xx-xx-14 - v1.1.0
+
+- `Mailer` A Mailer class that implements the `Illuminate\Mail\Mailer` with lots of helper methods.
+- `Validator` A Validation class that supports where you define different rules for different scenarios throughout your application.
+
 #### 07-Aug-14 - v1.0.0
 
 - `EventTrait` Common methods and properties for dispatching events.
@@ -21,7 +26,7 @@ Package history and capabilities.
 
 Support is installable with Composer. Read further information on how to install.
 
-[Installation Guide](https://cartalyst.com/manual/support#installation)
+[Installation Guide](https://cartalyst.com/manual/support/1.1#installation)
 
 ## Documentation
 
