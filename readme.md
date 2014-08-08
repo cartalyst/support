@@ -11,7 +11,7 @@ Package history and capabilities.
 #### xx-xx-14 - v1.1.0
 
 - `Mailer` A Mailer class that implements the `Illuminate\Mail\Mailer` with lots of helper methods.
-- `Validator` A Validation class that supports where you define different rules for different scenarios throughout your application.
+- `Validator` A Validation class that allows you to define different rules for different scenarios throughout your application.
 
 #### 07-Aug-14 - v1.0.0
 
