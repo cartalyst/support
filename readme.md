@@ -6,6 +6,10 @@ A support package that provides flexible and reusable helper methods and traits 
 
 ## Package Story
 
+Package history and capabilities.
+
+#### 07-Aug-14 - v1.0.0
+
 - `EventTrait` Common methods and properties for dispatching events.
 - `RepositoryTrait` Common methods and properties for use across repositories.
 
