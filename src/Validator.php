@@ -19,8 +19,7 @@
 
 use Cartalyst\Support\Contracts\ValidatorInterface;
 use Cartalyst\Support\Traits\ValidatorTrait;
-use Illuminate\Support\Facades\Validator as V;
-use Illuminate\Support\Fluent;
+use Illuminate\Validation\Factory;
 
 abstract class Validator implements ValidatorInterface {
 
@@ -44,6 +43,16 @@ abstract class Validator implements ValidatorInterface {
 	 * @var array
 	 */
 	protected $rules = [];
+
+	/**
+	 * Constructor.
+	 *
+	 * @param  \Illuminate\Validation\Factory  $factory
+	 */
+	public function __construct(Factory $factory)
+	{
+		$this->factory = $factory;
+	}
 
 	/**
 	 * {@inheritDoc}
@@ -122,14 +131,16 @@ abstract class Validator implements ValidatorInterface {
 			$this->onScenario('any');
 		}
 
-		if ($method = array_get($this->scenario, 'on', null))
+		if ($method = array_get($this->scenario, 'on'))
 		{
 			call_user_func_array([$this, $method], $this->scenario['arguments']);
 		}
 
-		$rules = (new Fluent($this->getBoundRules()))->getAttributes();
+		$rules = $this->getBoundRules();
 
-		return V::make($data, $rules);
+		$validator = $this->factory->make($data, $rules);
+
+		return $validator->errors();
 	}
 
 	/**
@@ -143,7 +154,7 @@ abstract class Validator implements ValidatorInterface {
 
 		foreach ($rules as $key => $value)
 		{
-			if ($binding = array_get($this->bindings, $key, null))
+			if ($binding = array_get($this->bindings, $key))
 			{
 				$rules[$key] = str_replace('{'.$key.'}', $binding, $value);
 			}
