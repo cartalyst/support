@@ -391,25 +391,6 @@ class Collection implements ArrayAccess, Countable {
 	}
 
 	/**
-	 * Handle dynamic calls to the collection to get and set attributes.
-	 *
-	 * @param  string  $method
-	 * @param  array  $parameters
-	 * @return $this
-	 */
-	public function __call($method, $parameters)
-	{
-		if (count($parameters) === 0)
-		{
-			return $this->get($method);
-		}
-
-		$this->attributes[$method] = $parameters[0];
-
-		return $this;
-	}
-
-	/**
 	 * Dynamically retrieve the value of an attribute.
 	 *
 	 * @param  string  $key

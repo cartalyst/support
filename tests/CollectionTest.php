@@ -93,7 +93,7 @@ class CollectionTest extends PHPUnit_Framework_TestCase {
 	{
 		$collection = new Collection('main');
 		$this->assertEquals(null, $collection->get('foo'));
-		$collection->foo('Foo');
+		$collection->foo = 'Foo';
 		$this->assertEquals('Foo', $collection->get('foo'));
 	}
 
@@ -222,20 +222,14 @@ class CollectionTest extends PHPUnit_Framework_TestCase {
 		$this->assertEquals('foo', $collection->id);
 
 		$collection = new Collection('main');
-		$collection->id('foo');
-		$this->assertEquals('foo', $collection->id());
+		$collection->id = 'foo';
+		$this->assertEquals('foo', $collection->id);
 
 		$collection = new Collection('main', function($collection)
 		{
 			$collection->id = 'foo';
 		});
 		$this->assertEquals('foo', $collection->id);
-
-		$collection = new Collection('main', function($collection)
-		{
-			$collection->id('foo');
-		});
-		$this->assertEquals('foo', $collection->id());
 	}
 
 	/** @test */
