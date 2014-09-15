@@ -17,35 +17,38 @@
  * @link       http://cartalyst.com
  */
 
+use Mockery as m;
 use PHPUnit_Framework_TestCase;
-use Cartalyst\Support\Traits\RepositoryTrait;
+use Cartalyst\Support\Traits\ValidatorTrait;
 
-class RepositoryTraitTest extends PHPUnit_Framework_TestCase {
+class ValidatorTraitTest extends PHPUnit_Framework_TestCase {
 
-	/** @test **/
-	public function it_can_set_and_retrieve_the_model()
+	/**
+	 * Close mockery.
+	 *
+	 * @return void
+	 */
+	public function tearDown()
 	{
-		$foo = new RepositoryTraitStub;
-
-		$foo->setModel('Foo');
-
-		$this->assertEquals('Foo', $foo->getModel());
+		m::close();
 	}
 
 	/** @test **/
-	public function it_can_create_a_model()
+	public function it_can_set_and_retrieve_the_validator_instance()
 	{
-		$foo = new RepositoryTraitStub;
+		$foo = new ValidatorTraitStub;
 
-		$foo->setModel('StdClass');
+		$mailer = m::mock('Cartalyst\Support\Validator');
 
-		$this->assertInstanceOf('StdClass', $foo->createModel());
+		$foo->setValidator($mailer);
+
+		$this->assertSame($foo->getValidator(), $mailer);
 	}
 
 }
 
-class RepositoryTraitStub {
+class ValidatorTraitStub {
 
-	use RepositoryTrait;
+	use ValidatorTrait;
 
 }

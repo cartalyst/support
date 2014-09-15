@@ -17,35 +17,38 @@
  * @link       http://cartalyst.com
  */
 
+use Mockery as m;
 use PHPUnit_Framework_TestCase;
-use Cartalyst\Support\Traits\RepositoryTrait;
+use Cartalyst\Support\Traits\MailerTrait;
 
-class RepositoryTraitTest extends PHPUnit_Framework_TestCase {
+class MailerTraitTest extends PHPUnit_Framework_TestCase {
 
-	/** @test **/
-	public function it_can_set_and_retrieve_the_model()
+	/**
+	 * Close mockery.
+	 *
+	 * @return void
+	 */
+	public function tearDown()
 	{
-		$foo = new RepositoryTraitStub;
-
-		$foo->setModel('Foo');
-
-		$this->assertEquals('Foo', $foo->getModel());
+		m::close();
 	}
 
 	/** @test **/
-	public function it_can_create_a_model()
+	public function it_can_set_and_retrieve_the_mailer_instance()
 	{
-		$foo = new RepositoryTraitStub;
+		$foo = new MailerTraitStub;
 
-		$foo->setModel('StdClass');
+		$mailer = m::mock('Cartalyst\Support\Mailer');
 
-		$this->assertInstanceOf('StdClass', $foo->createModel());
+		$foo->setMailer($mailer);
+
+		$this->assertSame($foo->getMailer(), $mailer);
 	}
 
 }
 
-class RepositoryTraitStub {
+class MailerTraitStub {
 
-	use RepositoryTrait;
+	use MailerTrait;
 
 }

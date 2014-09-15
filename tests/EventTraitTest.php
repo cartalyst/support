@@ -17,9 +17,9 @@
  * @link       http://cartalyst.com
  */
 
-use Cartalyst\Support\Traits\EventTrait;
 use Mockery as m;
 use PHPUnit_Framework_TestCase;
+use Cartalyst\Support\Traits\EventTrait;
 
 class EventTraitTest extends PHPUnit_Framework_TestCase {
 

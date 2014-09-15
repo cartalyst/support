@@ -17,8 +17,8 @@
  * @link       http://cartalyst.com
  */
 
-use Illuminate\Config\Repository as IlluminateConfig;
 use Illuminate\Mail\Mailer as IlluminateMailer;
+use Illuminate\Config\Repository as IlluminateConfig;
 
 class Mailer {
 
@@ -146,13 +146,36 @@ class Mailer {
 	}
 
 	/**
+	 * Returns the from name.
+	 *
+	 * @return array
+	 */
+	public function getFromName()
+	{
+		return array_get($this->from, 'name', null);
+	}
+
+	/**
+	 * Sets the from name.
+	 *
+	 * @param  string  $from
+	 * @return $this
+	 */
+	public function setFromName($from)
+	{
+		$this->from['name'] = $from;
+
+		return $this;
+	}
+
+	/**
 	 * Returns the from address.
 	 *
 	 * @return array
 	 */
-	public function getFrom()
+	public function getFromAddress()
 	{
-		return $this->from;
+		return array_get($this->from, 'address', null);
 	}
 
 	/**
@@ -161,9 +184,9 @@ class Mailer {
 	 * @param  string  $from
 	 * @return $this
 	 */
-	public function setFrom($from)
+	public function setFromAddress($from)
 	{
-		$this->from = $from;
+		$this->from['address'] = $from;
 
 		return $this;
 	}
@@ -199,7 +222,28 @@ class Mailer {
 	 */
 	public function getRecipients($type = null)
 	{
-		return array_get($this->recipients, $type, $this->recipients);
+		return array_get($this->recipients, $type, null);
+	}
+
+	/**
+	 * Sets multiple recipients by type.
+	 *
+	 * @param  string  $type
+	 * @param  array  $recipients
+	 * @return $this
+	 */
+	public function setRecipients($type, array $recipients = [])
+	{
+		foreach ($recipients as $key => $recipient)
+		{
+			$this->setRecipient(
+				$type,
+				array_get($recipient, 'email'),
+				array_get($recipient, 'name')
+			);
+		}
+
+		return $this;
 	}
 
 	/**
@@ -311,6 +355,16 @@ class Mailer {
 	}
 
 	/**
+	 * Returns all the attachments.
+	 *
+	 * @return array
+	 */
+	public function getAttachments()
+	{
+		return $this->attachments;
+	}
+
+	/**
 	 * Sets multiple attachments.
 	 *
 	 * @param  array  $attachments
@@ -334,6 +388,16 @@ class Mailer {
 		$this->attachments[] = $attachment;
 
 		return $this;
+	}
+
+	/**
+	 * Returns all the data attachments.
+	 *
+	 * @return array
+	 */
+	public function getDataAttachments()
+	{
+		return $this->dataAttachments;
 	}
 
 	/**
@@ -456,27 +520,6 @@ class Mailer {
 	}
 
 	/**
-	 * Sets multiple recipients by type.
-	 *
-	 * @param  string  $type
-	 * @param  array  $recipients
-	 * @return $this
-	 */
-	protected function setRecipients($type, array $recipients = [])
-	{
-		foreach ($recipients as $recipient)
-		{
-			$this->setRecipient(
-				$type,
-				array_get($recipient, 'email'),
-				array_get($recipient, 'name')
-			);
-		}
-
-		return $this;
-	}
-
-	/**
 	 * Sets a single recipient by type.
 	 *
 	 * @param  string  $type
@@ -486,7 +529,7 @@ class Mailer {
 	 */
 	protected function setRecipient($type, $email, $name)
 	{
-		$this->recipients[$type][] = compact('email', 'name');
+		$this->recipients[$type][$email] = compact('email', 'name');
 
 		return $this;
 	}

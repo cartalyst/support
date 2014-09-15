@@ -17,9 +17,9 @@
  * @link       http://cartalyst.com
  */
 
-use Cartalyst\Support\Contracts\ValidatorInterface;
-use Cartalyst\Support\Traits\ValidatorTrait;
 use Illuminate\Validation\Factory;
+use Cartalyst\Support\Traits\ValidatorTrait;
+use Cartalyst\Support\Contracts\ValidatorInterface;
 
 abstract class Validator implements ValidatorInterface {
 
