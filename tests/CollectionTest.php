@@ -47,12 +47,12 @@ class CollectionTest extends PHPUnit_Framework_TestCase {
 	public function it_can_get_the_total_items_from_the_collection()
 	{
 		$collection = new Collection('main');
-		$this->assertEquals(0, $collection->count());
+		$this->assertCount(0, $collection);
 
 		$collection = new Collection('main');
 		$collection->put('foo', 'Foo');
 		$collection->put('bar', 'Bar');
-		$this->assertEquals(2, $collection->count());
+		$this->assertCount(2, $collection);
 	}
 
 	/** @test */
@@ -167,11 +167,11 @@ class CollectionTest extends PHPUnit_Framework_TestCase {
 		$collection->put('baz', 'Baz');
 		$collection->put('bat', 'Bat');
 
-		$this->assertEquals(4, $collection->count());
+		$this->assertCount(4, $collection);
 
 		$collection->pull('bar');
 
-		$this->assertEquals(3, $collection->count());
+		$this->assertCount(3, $collection);
 	}
 
 	/** @test */
