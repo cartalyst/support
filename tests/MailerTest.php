@@ -370,4 +370,103 @@ class MailerTest extends PHPUnit_Framework_TestCase {
 		$this->assertCount(2, $this->mailer->getDataAttachments());
 	}
 
+	/** @test */
+	public function it_can_send_emails()
+	{
+		$baseMailer = m::mock('Illuminate\Mail\Mailer');
+		$baseMailer->shouldReceive('send')->once();
+
+		$this->mailer->setMailer($baseMailer);
+		$this->mailer->send();
+	}
+
+	/** @test */
+	public function it_can_queue_emails()
+	{
+		$baseMailer = m::mock('Illuminate\Mail\Mailer');
+		$baseMailer->shouldReceive('queue')->once();
+
+		$this->mailer->setMailer($baseMailer);
+		$this->mailer->queue();
+	}
+
+	/** @test */
+	public function it_can_queue_emails_on_a_specific_queue()
+	{
+		$baseMailer = m::mock('Illuminate\Mail\Mailer');
+		$baseMailer->shouldReceive('queueOn')->once()->with('foo', null, [], m::any());
+
+		$this->mailer->setMailer($baseMailer);
+		$this->mailer->queueOn('foo');
+	}
+
+	/** @test */
+	public function it_can_queue_a_delayed_email()
+	{
+		$baseMailer = m::mock('Illuminate\Mail\Mailer');
+		$baseMailer->shouldReceive('later')->once()->with(20, null, [], m::any());
+
+		$this->mailer->setMailer($baseMailer);
+		$this->mailer->later(20);
+	}
+
+	/** @test */
+	public function it_can_prepare_the_callback()
+	{
+		$baseMailer = m::mock('Illuminate\Mail\Mailer');
+		$config     = m::mock('Illuminate\Config\Repository');
+
+		$mailerStub = new MailerStub(
+			$baseMailer,
+			$config
+		);
+
+		$config->shouldReceive('get')->twice();
+
+		$mailerStub->testCallback();
+	}
+
+}
+
+class MailerStub extends Mailer {
+
+	public function testCallback()
+	{
+		$this->recipients = [
+			'to' => [
+				'foo@bar.baz' => [
+					'email' => 'foo@bar.baz',
+					'name'  => 'foo bar',
+				],
+			],
+		];
+
+		$this->attachments = [
+			'foo',
+			'bar' => [
+				'baz',
+				[]
+			],
+		];
+
+		$this->dataAttachments = [
+			'data' => [
+				'foobar',
+				[]
+			],
+		];
+
+		$message = m::mock('Illuminate\Mail\Message');
+		$message->shouldReceive('subject')->once();
+		$message->shouldReceive('from')->once();
+		$message->shouldReceive('to')->once()->with('foo@bar.baz', 'foo bar');
+		$message->shouldReceive('attach')->once()->with('foo', []);
+		$message->shouldReceive('attach')->once()->with('baz', []);
+		$message->shouldReceive('attachData')->once()->with('foobar', 'data', []);
+
+		$callback = $this->prepareCallback();
+
+		$callback($message);
+	}
+
 }
