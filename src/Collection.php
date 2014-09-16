@@ -58,6 +58,8 @@ class Collection implements ArrayAccess, Countable {
 	 */
 	public function all()
 	{
+		$this->executeBeforeCallback();
+
 		return $this->items;
 	}
 
@@ -68,6 +70,8 @@ class Collection implements ArrayAccess, Countable {
 	 */
 	public function count()
 	{
+		$this->executeBeforeCallback();
+
 		return count($this->items);
 	}
 
@@ -114,6 +118,8 @@ class Collection implements ArrayAccess, Countable {
 	 */
 	public function first()
 	{
+		$this->executeBeforeCallback();
+
 		return count($this->items) > 0 ? reset($this->items) : null;
 	}
 
@@ -152,6 +158,8 @@ class Collection implements ArrayAccess, Countable {
 	 */
 	public function has($key)
 	{
+		$this->executeBeforeCallback();
+
 		return array_key_exists($key, $this->items);
 	}
 
@@ -162,6 +170,8 @@ class Collection implements ArrayAccess, Countable {
 	 */
 	public function isEmpty()
 	{
+		$this->executeBeforeCallback();
+
 		return empty($this->items);
 	}
 
@@ -172,6 +182,8 @@ class Collection implements ArrayAccess, Countable {
 	 */
 	public function last()
 	{
+		$this->executeBeforeCallback();
+
 		return count($this->items) > 0 ? end($this->items) : null;
 	}
 
@@ -183,6 +195,8 @@ class Collection implements ArrayAccess, Countable {
 	 */
 	public function offsetExists($key)
 	{
+		$this->executeBeforeCallback();
+
 		$items = $this->items;
 
 		if (isset($items[$key]))
@@ -211,6 +225,8 @@ class Collection implements ArrayAccess, Countable {
 	 */
 	public function offsetGet($key)
 	{
+		$this->executeBeforeCallback();
+
 		$items = $this->items;
 
 		if (array_key_exists($key, $items))
@@ -240,6 +256,8 @@ class Collection implements ArrayAccess, Countable {
 	 */
 	public function offsetSet($key, $value)
 	{
+		$this->executeBeforeCallback();
+
 		$items =& $this->items;
 
 		$parts = explode('.', $key);
@@ -267,6 +285,8 @@ class Collection implements ArrayAccess, Countable {
 	 */
 	public function offsetUnset($key)
 	{
+		$this->executeBeforeCallback();
+
 		$items =& $this->items;
 
 		$parts = explode('.', $key);
@@ -440,6 +460,14 @@ class Collection implements ArrayAccess, Countable {
 	public function __unset($key)
 	{
 		unset($this->attributes[$key]);
+	}
+
+	protected function executeBeforeCallback()
+	{
+		if (method_exists($this, 'beforeCallback'))
+		{
+			call_user_func_array([$this, 'beforeCallback'], []);
+		}
 	}
 
 }
