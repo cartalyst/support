@@ -18,10 +18,6 @@ Package history and capabilities.
 - `EventTrait` Common methods and properties for dispatching events.
 - `RepositoryTrait` Common methods and properties for use across repositories.
 
-## Requirements
-
-- PHP >=5.4
-
 ## Installation
 
 Support is installable with Composer. Read further information on how to install.
@@ -32,7 +28,13 @@ Support is installable with Composer. Read further information on how to install
 
 Refer to the following guide on how to use the Support package.
 
-[Documentation](https://cartalyst.com/manual/support)
+[Documentation](https://cartalyst.com/manual/support/1.1)
+
+## Testing
+
+```bash
+$ phpunit
+```
 
 ## Versioning
 
@@ -50,7 +52,7 @@ And constructed with the following guidelines:
 
 ## Contributing
 
-Please read the [Contributing](contributing.md) guidelines.
+Please see [contributing.md](contributing.md) for details.
 
 ## Support
 
