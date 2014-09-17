@@ -462,6 +462,11 @@ class Collection implements ArrayAccess, Countable {
 		unset($this->attributes[$key]);
 	}
 
+	/**
+	 * Calls the beforeCallback method if it exists on the collection.
+	 *
+	 * @return void
+	 */
 	protected function executeBeforeCallback()
 	{
 		if (method_exists($this, 'beforeCallback'))
