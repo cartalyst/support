@@ -281,6 +281,37 @@ class CollectionTest extends PHPUnit_Framework_TestCase {
 		$this->assertTrue($expected === $output);
 	}
 
+	/** @test */
+	public function it_can_execute_the_before_callback_method()
+	{
+		$collection = new CollectionStub('foo');
+		$collection->put('foo', new Collection('foo'));
+		$collection->put('bar', new Collection('bar'));
+
+		$this->assertCount(2, $collection->all());
+
+		$this->assertTrue($collection->first()->valid);
+		$this->assertEquals('Foo', $collection->first()->name);
+
+		$this->assertTrue($collection->last()->valid);
+		$this->assertEquals('Bar', $collection->last()->name);
+	}
+
+	/** @test */
+	public function it_can_attach_a_collection()
+	{
+		$collection = new Collection('foo');
+
+		$this->assertCount(0, $collection);
+
+		$collection->attach(new Collection('foo'));
+		$collection->attach(new Collection('bar'));
+		$collection->attach(new Collection('baz'));
+		$collection->attach(new Collection('foo'));
+
+		$this->assertCount(3, $collection);
+	}
+
 }
 
 class CollectionStub extends Collection {
@@ -288,6 +319,15 @@ class CollectionStub extends Collection {
 	public function nameAttribute($name)
 	{
 		return "Test {$name}";
+	}
+
+	public function beforeCallback()
+	{
+		foreach ($this->items as $item)
+		{
+			$item->valid = true;
+			$item->name = ucfirst($item->id);
+		}
 	}
 
 }

@@ -64,6 +64,26 @@ class Collection implements ArrayAccess, Countable {
 	}
 
 	/**
+	 * Attaches the given collection into the current collection.
+	 *
+	 * @param  \Cartalyst\Support\Collection  $collection
+	 * @param  string  $type
+	 * @return $this
+	 */
+	public function attach(Collection $collection, $type = 'Cartalyst\Support\Collection')
+	{
+		if ( ! is_null($type) && $collection instanceof $type)
+		{
+			if ( ! $this->find($collection->id))
+			{
+				$this->put($collection->id, $collection);
+			}
+		}
+
+		return $this;
+	}
+
+	/**
 	 * Counts the number of items in the collection.
 	 *
 	 * @return int
