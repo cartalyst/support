@@ -217,24 +217,12 @@ class Collection implements ArrayAccess, Countable {
 	{
 		$this->executeBeforeCallback();
 
-		$items = $this->items;
-
-		if (isset($items[$key]))
+		if (isset($this->items[$key]))
 		{
 			return true;
 		}
 
-		foreach (explode('.', $key) as $part)
-		{
-			if ( ! isset($items[$part]))
-			{
-				return false;
-			}
-
-			$items = $items[$part];
-		}
-
-		return true;
+		return false;
 	}
 
 	/**
@@ -247,24 +235,10 @@ class Collection implements ArrayAccess, Countable {
 	{
 		$this->executeBeforeCallback();
 
-		$items = $this->items;
-
-		if (array_key_exists($key, $items))
+		if (isset($this->items[$key]))
 		{
-			return $items[$key];
+			return $this->items[$key];
 		}
-
-		foreach (explode('.', $key) as $part)
-		{
-			if ( ! isset($items[$part]))
-			{
-				return null;
-			}
-
-			$items = $items[$part];
-		}
-
-		return $items;
 	}
 
 	/**
@@ -278,23 +252,7 @@ class Collection implements ArrayAccess, Countable {
 	{
 		$this->executeBeforeCallback();
 
-		$items =& $this->items;
-
-		$parts = explode('.', $key);
-
-		while (count($parts) > 1)
-		{
-			$part = array_shift($parts);
-
-			if ( ! isset($items[$part]) || ! is_array($items[$part]))
-			{
-				$items[$part] = [];
-			}
-
-			$items =& $items[$part];
-		}
-
-		$items[array_shift($parts)] = $value;
+		$this->items[$key] = $value;
 	}
 
 	/**
@@ -307,21 +265,7 @@ class Collection implements ArrayAccess, Countable {
 	{
 		$this->executeBeforeCallback();
 
-		$items =& $this->items;
-
-		$parts = explode('.', $key);
-
-		while (count($parts) > 1)
-		{
-			$part = array_shift($parts);
-
-			if (isset($items[$part]) && is_array($items[$part]))
-			{
-				$items =& $items[$part];
-			}
-		}
-
-		unset($items[array_shift($parts)]);
+		unset($this->items[$key]);
 	}
 
 	/**
