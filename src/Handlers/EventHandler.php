@@ -1,4 +1,4 @@
-<?php namespace Cartalyst\Support\Base;
+<?php namespace Cartalyst\Support\Handlers;
 /**
  * Part of the Support package.
  *
