@@ -55,4 +55,18 @@ trait RepositoryTrait {
 		return $this;
 	}
 
+	/**
+	 * Dynamically pass missing methods to the model.
+	 *
+	 * @param  string  $method
+	 * @param  array  $parameters
+	 * @return mixed
+	 */
+	public function __call($method, $parameters)
+	{
+		$model = $this->createModel();
+
+		return call_user_func_array([$model, $method], $parameters);
+	}
+
 }
