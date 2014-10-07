@@ -61,6 +61,18 @@ class ValidatorTest extends PHPUnit_Framework_TestCase {
 		$this->assertInstanceOf('Cartalyst\Support\Validator', $validator);
 	}
 
+	/** @test */
+	public function it_can_define_on_scenarios()
+	{
+		$validator = new ValidatorStub(
+			m::mock('Illuminate\Validation\Factory')
+		);
+
+		$scenario = $validator->on('update', ['foo']);
+
+		$this->assertInstanceOf('Cartalyst\Support\Validator', $scenario);
+	}
+
 }
 
 class ValidatorStub extends Validator {
