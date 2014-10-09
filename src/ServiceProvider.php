@@ -23,7 +23,7 @@ abstract class ServiceProvider extends \Illuminate\Support\ServiceProvider {
 	 * Bind a shared Closure into the container.
 	 *
 	 * @param  string  $abstract
-	 * @param  \Closure  $closure
+	 * @param  \Closure|string|null  $concrete
 	 * @return void
 	 */
 	protected function bindShared($abstract, $concrete = null, $interface = null)
