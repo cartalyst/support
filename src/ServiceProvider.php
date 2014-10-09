@@ -20,28 +20,60 @@
 abstract class ServiceProvider extends \Illuminate\Support\ServiceProvider {
 
 	/**
+	 * The alias pattern.
+	 *
+	 * @var string
+	 */
+	protected $aliasPattern = '{class}Interface';
+
+	/**
 	 * Registers a binding if it hasn't already been registered.
 	 *
 	 * @param  string  $abstract
 	 * @param  \Closure|string|null  $concrete
-	 * @param  string  $interface
+	 * @param  bool  $shared
+	 * @param  bool|string|null  $alias
 	 * @return void
 	 */
-	protected function bindIf($abstract, $concrete = null, $interface = null)
+	protected function bindIf($abstract, $concrete = null, $shared = true, $alias = null)
 	{
-		$concrete = $concrete ?: $abstract;
-
-		$this->app->bindIf($abstract, $concrete);
-
-		if ( ! $concrete instanceof \Closure)
+		if ( ! $this->app->bound($abstract))
 		{
-			$interface = $interface ?: "{$concrete}Interface";
+			$concrete = $concrete ?: $abstract;
+
+			$this->app->bind($abstract, $concrete, $shared);
 		}
 
-		if ($interface)
+		$this->alias($abstract, $this->prepareAlias($alias, $concrete));
+	}
+
+	/**
+	 * Alias a type to a shorter name.
+	 *
+	 * @param  string  $abstract
+	 * @param  string  $alias
+	 * @return void
+	 */
+	protected function alias($abstract, $alias)
+	{
+		if ($alias) $this->app->alias($abstract, $alias);
+	}
+
+	/**
+	 * Prepares the alias.
+	 *
+	 * @param  string  $alias
+	 * @param  mixed  $concrete
+	 * @return mixed
+	 */
+	protected function prepareAlias($alias, $concrete)
+	{
+		if ( ! $alias && $alias !== false && ! $concrete instanceof \Closure)
 		{
-			$this->app->alias($abstract, $interface);
+			$alias = str_replace('{class}', $concrete, $this->aliasPattern);
 		}
+
+		return $alias;
 	}
 
 }
