@@ -20,6 +20,30 @@
 abstract class ServiceProvider extends \Illuminate\Support\ServiceProvider {
 
 	/**
+	 * Bind a shared Closure into the container.
+	 *
+	 * @param  string  $abstract
+	 * @param  \Closure  $closure
+	 * @return void
+	 */
+	protected function bindShared($abstract, $concrete = null, $interface = null)
+	{
+		if ( ! $concrete instanceof \Closure)
+		{
+			$interface = $interface ?: "{$concrete}Interface";
+
+			$concrete = $this->getClosure($abstract, $concrete);
+		}
+
+		$this->app->bindShared($abstract, $concrete);
+
+		if ($interface)
+		{
+			$this->app->alias($abstract, $interface);
+		}
+	}
+
+	/**
 	 * Registers a binding if it hasn't already been registered.
 	 *
 	 * @param  string  $abstract
@@ -42,6 +66,23 @@ abstract class ServiceProvider extends \Illuminate\Support\ServiceProvider {
 		{
 			$this->app->alias($abstract, $interface);
 		}
+	}
+
+	/**
+	 * Get the Closure to be used when building a type.
+	 *
+	 * @param  string  $abstract
+	 * @param  string  $concrete
+	 * @return \Closure
+	 */
+	protected function getClosure($abstract, $concrete)
+	{
+		return function($c, $parameters = []) use ($abstract, $concrete)
+		{
+			$method = ($abstract == $concrete) ? 'build' : 'make';
+
+			return $c->{$method}($concrete, $parameters);
+		};
 	}
 
 }
