@@ -10,8 +10,12 @@ Package history and capabilities.
 
 #### xx-xx-14 - v1.1.0
 
+- `Collection` A Collection class, similar to the Laravel Collection but more simpler.
 - `Mailer` A Mailer class that implements the `Illuminate\Mail\Mailer` with lots of helper methods.
 - `Validator` A Validation class that allows you to define different rules for different scenarios throughout your application.
+- `ContainerTrait` Common methods and properties for accessing the Laravel IoC.
+- `MailerTrait` Common methods and properties for sending emails.
+- `ValidatorTrait` Common methods and properties for doing validation.
 
 #### 07-Aug-14 - v1.0.0
 
