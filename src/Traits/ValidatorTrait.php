@@ -21,18 +21,34 @@ use Cartalyst\Support\Validator;
 
 trait ValidatorTrait {
 
+	/**
+	 * The Validator instance.
+	 *
+	 * @var \Cartalyst\Support\Validator
+	 */
 	protected $validator;
 
+	/**
+	 * Returns the Validator instance.
+	 *
+	 * @return \Cartalyst\Support\Validator
+	 */
+	public function getValidator()
+	{
+		return $this->validator;
+	}
+
+	/**
+	 * Sets the Validator instance.
+	 *
+	 * @param  \Cartalyst\Support\Validator  $validator
+	 * @return $this
+	 */
 	public function setValidator(Validator $validator)
 	{
 		$this->validator = $validator;
 
 		return $this;
-	}
-
-	public function getValidator()
-	{
-		return $this->validator;
 	}
 
 }
