@@ -90,9 +90,6 @@ class ValidatorTest extends PHPUnit_Framework_TestCase {
 		$this->validator->bind([ 'foo' => 'bar' ]);
 	}
 
-
-
-
 	/** @test */
 	public function it_can_validate()
 	{
