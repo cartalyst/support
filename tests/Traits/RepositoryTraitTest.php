@@ -1,4 +1,4 @@
-<?php namespace Cartalyst\Support\Tests;
+<?php namespace Cartalyst\Support\Tests\Traits;
 /**
  * Part of the Support package.
  *
@@ -25,21 +25,33 @@ class RepositoryTraitTest extends PHPUnit_Framework_TestCase {
 	/** @test **/
 	public function it_can_set_and_retrieve_the_model()
 	{
-		$foo = new RepositoryTraitStub;
+		$repository = new RepositoryTraitStub;
 
-		$foo->setModel('Foo');
+		$repository->setModel('FooModelStub');
 
-		$this->assertEquals('Foo', $foo->getModel());
+		$this->assertEquals('FooModelStub', $repository->getModel());
 	}
 
 	/** @test **/
 	public function it_can_create_a_model()
 	{
-		$foo = new RepositoryTraitStub;
+		$repository = new RepositoryTraitStub;
 
-		$foo->setModel('StdClass');
+		$repository->setModel('StdClass');
 
-		$this->assertInstanceOf('StdClass', $foo->createModel());
+		$this->assertInstanceOf('StdClass', $repository->createModel());
+	}
+
+	/** @test */
+	public function it_can_call_dynamic_methods()
+	{
+		$repository = new RepositoryTraitStub;
+
+		$repository->setModel('Cartalyst\Support\Tests\Traits\FooModelStub');
+
+		$this->assertEquals('Cartalyst\Support\Tests\Traits\FooModelStub', $repository->getModel());
+
+		$this->assertSame('bar', $repository->foo());
 	}
 
 }
@@ -47,5 +59,14 @@ class RepositoryTraitTest extends PHPUnit_Framework_TestCase {
 class RepositoryTraitStub {
 
 	use RepositoryTrait;
+
+}
+
+class FooModelStub {
+
+	public function foo()
+	{
+		return 'bar';
+	}
 
 }

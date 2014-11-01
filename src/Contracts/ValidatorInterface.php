@@ -20,6 +20,21 @@
 interface ValidatorInterface {
 
 	/**
+	 * Returns the validation rules.
+	 *
+	 * @return array
+	 */
+	public function getRules();
+
+	/**
+	 * Sets the validation rules.
+	 *
+	 * @param  array  $rules
+	 * @return $this
+	 */
+	public function setRules(array $rules);
+
+	/**
 	 * Create a scope scenario.
 	 *
 	 * @param  string  $scenario
@@ -27,6 +42,15 @@ interface ValidatorInterface {
 	 * @return \Cartalyst\Support\Validator
 	 */
 	public function on($scenario, array $arguments = []);
+
+	/**
+	 * Create a scope scenario.
+	 *
+	 * @param  string  $scenario
+	 * @param  array  $arguments
+	 * @return $this
+	 */
+	public function onScenario($scenario, array $arguments = []);
 
 	/**
 	 * Register bindings to the scenario.
@@ -37,18 +61,19 @@ interface ValidatorInterface {
 	public function bind(array $bindings);
 
 	/**
+	 * Register the bindings.
+	 *
+	 * @param  array  $bindings
+	 * @return $this
+	 */
+	public function registerBindings(array $bindings);
+
+	/**
 	 * Execute validation service.
 	 *
 	 * @param  array  $data
 	 * @return \Illuminate\Validation\Validator
 	 */
 	public function validate(array $data);
-
-	/**
-	 * Returns the validation rules.
-	 *
-	 * @return array
-	 */
-	public function getRules();
 
 }

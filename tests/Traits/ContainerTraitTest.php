@@ -1,4 +1,4 @@
-<?php namespace Cartalyst\Support\Tests;
+<?php namespace Cartalyst\Support\Tests\Traits;
 /**
  * Part of the Support package.
  *
@@ -19,9 +19,9 @@
 
 use Mockery as m;
 use PHPUnit_Framework_TestCase;
-use Cartalyst\Support\Traits\MailerTrait;
+use Cartalyst\Support\Traits\ContainerTrait;
 
-class MailerTraitTest extends PHPUnit_Framework_TestCase {
+class ContainerTraitTest extends PHPUnit_Framework_TestCase {
 
 	/**
 	 * Close mockery.
@@ -34,21 +34,21 @@ class MailerTraitTest extends PHPUnit_Framework_TestCase {
 	}
 
 	/** @test **/
-	public function it_can_set_and_retrieve_the_mailer_instance()
+	public function it_can_set_and_retrieve_the_container()
 	{
-		$foo = new MailerTraitStub;
+		$containerTrait = new ContainerTraitStub;
 
-		$mailer = m::mock('Cartalyst\Support\Mailer');
+		$container = m::mock('Illuminate\Container\Container');
 
-		$foo->setMailer($mailer);
+		$containerTrait->setContainer($container);
 
-		$this->assertSame($foo->getMailer(), $mailer);
+		$this->assertSame($containerTrait->getContainer(), $container);
 	}
 
 }
 
-class MailerTraitStub {
+class ContainerTraitStub {
 
-	use MailerTrait;
+	use ContainerTrait;
 
 }

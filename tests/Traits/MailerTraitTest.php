@@ -1,4 +1,4 @@
-<?php namespace Cartalyst\Support\Tests;
+<?php namespace Cartalyst\Support\Tests\Traits;
 /**
  * Part of the Support package.
  *
@@ -19,9 +19,9 @@
 
 use Mockery as m;
 use PHPUnit_Framework_TestCase;
-use Cartalyst\Support\Traits\ValidatorTrait;
+use Cartalyst\Support\Traits\MailerTrait;
 
-class ValidatorTraitTest extends PHPUnit_Framework_TestCase {
+class MailerTraitTest extends PHPUnit_Framework_TestCase {
 
 	/**
 	 * Close mockery.
@@ -34,21 +34,21 @@ class ValidatorTraitTest extends PHPUnit_Framework_TestCase {
 	}
 
 	/** @test **/
-	public function it_can_set_and_retrieve_the_validator_instance()
+	public function it_can_set_and_retrieve_the_mailer_instance()
 	{
-		$foo = new ValidatorTraitStub;
+		$mailerTrait = new MailerTraitStub;
 
-		$mailer = m::mock('Cartalyst\Support\Validator');
+		$mailer = m::mock('Cartalyst\Support\Mailer');
 
-		$foo->setValidator($mailer);
+		$mailerTrait->setMailer($mailer);
 
-		$this->assertSame($foo->getValidator(), $mailer);
+		$this->assertSame($mailerTrait->getMailer(), $mailer);
 	}
 
 }
 
-class ValidatorTraitStub {
+class MailerTraitStub {
 
-	use ValidatorTrait;
+	use MailerTrait;
 
 }

@@ -37,7 +37,7 @@ class ValidatorTest extends PHPUnit_Framework_TestCase {
 	public function setUp()
 	{
 		$this->validator = new ValidatorStub(
-			m::mock('Illuminate\Validation\Factory')
+			$this->getRealValidator()
 		);
 	}
 
@@ -55,26 +55,77 @@ class ValidatorTest extends PHPUnit_Framework_TestCase {
 	public function it_can_be_instantiated()
 	{
 		$validator = new ValidatorStub(
-			m::mock('Illuminate\Validation\Factory')
+			$this->getRealValidator()
 		);
 
 		$this->assertInstanceOf('Cartalyst\Support\Validator', $validator);
 	}
 
 	/** @test */
-	public function it_can_define_on_scenarios()
+	public function it_can_get_and_set_the_rules()
 	{
-		$validator = new ValidatorStub(
-			m::mock('Illuminate\Validation\Factory')
-		);
+		$this->assertCount(1, $this->validator->getRules());
 
-		$scenario = $validator->on('update', ['foo']);
+		$this->validator->setRules([]);
+		$this->assertCount(0, $this->validator->getRules());
+
+		$this->validator->setRules([
+			'name'  => 'required',
+			'email' => 'required',
+		]);
+		$this->assertCount(2, $this->validator->getRules());
+	}
+
+	/** @test */
+	public function it_can_define_scenarios()
+	{
+		$scenario = $this->validator->on('update', [ 'foo' ]);
 
 		$this->assertInstanceOf('Cartalyst\Support\Validator', $scenario);
+	}
+
+	/** @test */
+	public function it_can_register_bindings()
+	{
+		$this->validator->bind([ 'foo' => 'bar' ]);
+	}
+
+
+
+
+	/** @test */
+	public function it_can_validate()
+	{
+		$messages = $this->validator->validate([]);
+
+		$this->assertCount(1, $messages);
+
+		$messages = $this->validator->on('update')->bind([ 'email' => 'popop@asdad.com' ])->validate([
+			'email' => 'john@doe.com'
+		]);
+
+		$this->assertTrue($messages->isEmpty());
+	}
+
+	protected function getRealValidator()
+	{
+		$trans = new \Symfony\Component\Translation\Translator('en', new \Symfony\Component\Translation\MessageSelector);
+		$trans->addLoader('array', new \Symfony\Component\Translation\Loader\ArrayLoader);
+
+		return new IlluminateValidator($trans);
 	}
 
 }
 
 class ValidatorStub extends Validator {
+
+	protected $rules = [
+		'email' => 'required|email',
+	];
+
+	public function onUpdate()
+	{
+
+	}
 
 }

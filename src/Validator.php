@@ -57,6 +57,24 @@ abstract class Validator implements ValidatorInterface {
 	/**
 	 * {@inheritDoc}
 	 */
+	public function getRules()
+	{
+		return $this->rules;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public function setRules(array $rules)
+	{
+		$this->rules = $rules;
+
+		return $this;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
 	public function on($scenario, array $arguments = [])
 	{
 		return $this->onScenario($scenario, $arguments);
@@ -64,34 +82,6 @@ abstract class Validator implements ValidatorInterface {
 
 	/**
 	 * {@inheritDoc}
-	 */
-	public function bind(array $bindings)
-	{
-		return $this->registerBindings($bindings);
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	public function validate(array $data)
-	{
-		return $this->executeValidation($data);
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	public function getRules()
-	{
-		return $this->rules;
-	}
-
-	/**
-	 * Create a scope scenario.
-	 *
-	 * @param  string  $scenario
-	 * @param  array  $arguments
-	 * @return $this
 	 */
 	public function onScenario($scenario, array $arguments = [])
 	{
@@ -106,10 +96,15 @@ abstract class Validator implements ValidatorInterface {
 	}
 
 	/**
-	 * Register the bindings.
-	 *
-	 * @param  array  $bindings
-	 * @return $this
+	 * {@inheritDoc}
+	 */
+	public function bind(array $bindings)
+	{
+		return $this->registerBindings($bindings);
+	}
+
+	/**
+	 * {@inheritDoc}
 	 */
 	public function registerBindings(array $bindings)
 	{
@@ -119,18 +114,21 @@ abstract class Validator implements ValidatorInterface {
 	}
 
 	/**
+	 * {@inheritDoc}
+	 */
+	public function validate(array $data)
+	{
+		return $this->executeValidation($data);
+	}
+
+	/**
 	 * Executes the data validation against the service rules.
 	 *
 	 * @param  array  $data
 	 * @return \Illuminate\Validation\Validator
 	 */
-	public function executeValidation(array $data)
+	protected function executeValidation(array $data)
 	{
-		if (is_null($this->scenario))
-		{
-			$this->onScenario('any');
-		}
-
 		if ($method = array_get($this->scenario, 'on'))
 		{
 			call_user_func_array([$this, $method], $this->scenario['arguments']);

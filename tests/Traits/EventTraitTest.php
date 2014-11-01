@@ -1,4 +1,4 @@
-<?php namespace Cartalyst\Support\Tests;
+<?php namespace Cartalyst\Support\Tests\Traits;
 /**
  * Part of the Support package.
  *
@@ -34,52 +34,39 @@ class EventTraitTest extends PHPUnit_Framework_TestCase {
 	}
 
 	/** @test **/
-	public function it_can_set_and_retrieve_the_dispatchcer()
+	public function it_can_set_and_retrieve_the_dispatcher()
 	{
-		$foo = new EventTraitStub;
+		$eventTrait = new EventTraitStub;
 
 		$dispatcher = m::mock('Illuminate\Events\Dispatcher');
 
-		$foo->setDispatcher($dispatcher);
+		$eventTrait->setDispatcher($dispatcher);
 
-		$this->assertSame($foo->getDispatcher(), $dispatcher);
+		$this->assertSame($eventTrait->getDispatcher(), $dispatcher);
 	}
 
 	/** @test **/
 	public function it_can_set_and_retrieve_the_dispatcher_status()
 	{
-		$foo = new EventTraitStub;
+		$eventTrait = new EventTraitStub;
 
 		$dispatcher = m::mock('Illuminate\Events\Dispatcher');
 
 		$dispatcher->shouldReceive('fire')->once();
 
-		$foo->setDispatcher($dispatcher);
+		$eventTrait->setDispatcher($dispatcher);
 
-		$foo->disableDispatcher();
+		$eventTrait->disableDispatcher();
 
-		$this->assertFalse($foo->getDispatcherStatus());
+		$this->assertFalse($eventTrait->getDispatcherStatus());
 
-		$foo->testEvent();
+		$eventTrait->testEvent();
 
-		$foo->enableDispatcher();
+		$eventTrait->enableDispatcher();
 
-		$this->assertTrue($foo->getDispatcherStatus());
+		$this->assertTrue($eventTrait->getDispatcherStatus());
 
-		$foo->testEvent();
-	}
-
-	/** @test **/
-	public function it_can_chain_methods()
-	{
-		$foo = new EventTraitStub;
-
-		$dispatcher = m::mock('Illuminate\Events\Dispatcher');
-
-		$this->assertInstanceOf('Cartalyst\Support\Tests\EventTraitStub', $foo->setDispatcher($dispatcher));
-		$this->assertInstanceOf('Cartalyst\Support\Tests\EventTraitStub', $foo->setDispatcherStatus(false));
-		$this->assertInstanceOf('Cartalyst\Support\Tests\EventTraitStub', $foo->enableDispatcher());
-		$this->assertInstanceOf('Cartalyst\Support\Tests\EventTraitStub', $foo->disableDispatcher());
+		$eventTrait->testEvent();
 	}
 
 }

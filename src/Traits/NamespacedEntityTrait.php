@@ -40,14 +40,4 @@ trait NamespacedEntityTrait {
 		static::$entityNamespace = $namespace;
 	}
 
-	/**
-	 * Checks if the entity is currently namespaced.
-	 *
-	 * @return bool
-	 */
-	public static function isEntityNamespaced()
-	{
-		return (bool) isset(static::$entityNamespace);
-	}
-
 }
