@@ -45,6 +45,13 @@ abstract class Validator implements ValidatorInterface {
 	protected $rules = [];
 
 	/**
+	 * Flag that indicates if we should by pass the validation.
+	 *
+	 * @var bool
+	 */
+	protected $byPass = false;
+
+	/**
 	 * Constructor.
 	 *
 	 * @param  \Illuminate\Validation\Factory  $factory
@@ -122,6 +129,16 @@ abstract class Validator implements ValidatorInterface {
 	}
 
 	/**
+	 * {@inheritDoc}
+	 */
+	public function byPass($status = true)
+	{
+		$this->byPass = (bool) $status;
+
+		return $this;
+	}
+
+	/**
 	 * Executes the data validation against the service rules.
 	 *
 	 * @param  array  $data
@@ -148,6 +165,8 @@ abstract class Validator implements ValidatorInterface {
 	 */
 	protected function getBoundRules()
 	{
+		if ($this->byPass === true) return [];
+
 		$rules = $this->getRules();
 
 		foreach ($rules as $key => $value)

@@ -76,4 +76,12 @@ interface ValidatorInterface {
 	 */
 	public function validate(array $data);
 
+	/**
+	 * Sets if we should by pass the validation or not.
+	 *
+	 * @param  bool  $status
+	 * @return $this
+	 */
+	public function byPass($status = true);
+
 }
