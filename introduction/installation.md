@@ -1,8 +1,8 @@
-### Installation
+## Installation
 
 The best and easiest way to install the Support package is with [Composer](http://getcomposer.org).
 
-#### Preparation
+### Preparation
 
 Open your `composer.json` file and add the following to the `require` array:
 
