@@ -312,6 +312,38 @@ class CollectionTest extends PHPUnit_Framework_TestCase {
 		$this->assertCount(3, $collection);
 	}
 
+	/** @test */
+	public function it_can_make_an_item_on_a_collection_the_first_item()
+	{
+		$collection = new Collection('main');
+		$collection->put('a', 'A');
+		$collection->put('b', 'B');
+		$collection->put('c', 'C');
+		$collection->put('d', 'D');
+
+		$this->assertEquals('A', $collection->first());
+
+		$collection->makeFirst('c');
+
+		$this->assertEquals('C', $collection->first());
+	}
+
+	/** @test */
+	public function it_can_make_an_item_on_a_collection_the_last_item()
+	{
+		$collection = new Collection('main');
+		$collection->put('a', 'A');
+		$collection->put('b', 'B');
+		$collection->put('c', 'C');
+		$collection->put('d', 'D');
+
+		$this->assertEquals('D', $collection->last());
+
+		$collection->makeLast('c');
+
+		$this->assertEquals('C', $collection->last());
+	}
+
 }
 
 class CollectionStub extends Collection {

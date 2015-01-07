@@ -221,6 +221,23 @@ class Collection implements ArrayAccess, Countable {
 	}
 
 	/**
+	 * Makes the given item to be sorted last on the collection.
+	 *
+	 * @param  string  $item
+	 * @return $this
+	 */
+	public function makeLast($item)
+	{
+		$_item = $this->items[$item];
+
+		unset($this->items[$item]);
+
+		$this->put($item, $_item);
+
+		return $this;
+	}
+
+	/**
 	 * Determines if the given offset exists.
 	 *
 	 * @param  string  $key
