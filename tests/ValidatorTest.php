@@ -104,6 +104,14 @@ class ValidatorTest extends PHPUnit_Framework_TestCase {
 		$this->assertTrue($messages->isEmpty());
 	}
 
+	/** @test */
+	public function it_can_by_pass_tests()
+	{
+		$this->validator->bypass();
+
+		$this->assertTrue($messages->isEmpty());
+	}
+
 	protected function getRealValidator()
 	{
 		$trans = new \Symfony\Component\Translation\Translator('en', new \Symfony\Component\Translation\MessageSelector);

@@ -45,11 +45,11 @@ abstract class Validator implements ValidatorInterface {
 	protected $rules = [];
 
 	/**
-	 * Flag that indicates if we should by pass the validation.
+	 * Flag that indicates if we should bypass the validation.
 	 *
 	 * @var bool
 	 */
-	protected $byPass = false;
+	protected $bypass = false;
 
 	/**
 	 * Constructor.
@@ -131,9 +131,9 @@ abstract class Validator implements ValidatorInterface {
 	/**
 	 * {@inheritDoc}
 	 */
-	public function byPass($status = true)
+	public function bypass($status = true)
 	{
-		$this->byPass = (bool) $status;
+		$this->bypass = (bool) $status;
 
 		return $this;
 	}
@@ -165,7 +165,7 @@ abstract class Validator implements ValidatorInterface {
 	 */
 	protected function getBoundRules()
 	{
-		if ($this->byPass === true) return [];
+		if ($this->bypass === true) return [];
 
 		$rules = $this->getRules();
 
