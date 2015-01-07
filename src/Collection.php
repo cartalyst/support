@@ -208,6 +208,19 @@ class Collection implements ArrayAccess, Countable {
 	}
 
 	/**
+	 * Makes the given item to be sorted first on the collection.
+	 *
+	 * @param  string  $item
+	 * @return $this
+	 */
+	public function makeFirst($item)
+	{
+		$this->items = [ $item => $this->items[$item] ] + $this->items;
+
+		return $this;
+	}
+
+	/**
 	 * Determines if the given offset exists.
 	 *
 	 * @param  string  $key
