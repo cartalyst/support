@@ -109,6 +109,8 @@ class ValidatorTest extends PHPUnit_Framework_TestCase {
 	{
 		$this->validator->bypass();
 
+		$messages = $this->validator->validate([]);
+
 		$this->assertTrue($messages->isEmpty());
 	}
 
