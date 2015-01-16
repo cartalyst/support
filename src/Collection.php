@@ -215,7 +215,10 @@ class Collection implements ArrayAccess, Countable {
 	 */
 	public function makeFirst($item)
 	{
-		$this->items = [ $item => $this->items[$item] ] + $this->items;
+		if (isset($this->items[$item]))
+		{
+			$this->items = [ $item => $this->items[$item] ] + $this->items;
+		}
 
 		return $this;
 	}
@@ -228,11 +231,14 @@ class Collection implements ArrayAccess, Countable {
 	 */
 	public function makeLast($item)
 	{
-		$_item = $this->items[$item];
+		if (isset($this->items[$item]))
+		{
+			$_item = $this->items[$item];
 
-		unset($this->items[$item]);
+			unset($this->items[$item]);
 
-		$this->put($item, $_item);
+			$this->put($item, $_item);
+		}
 
 		return $this;
 	}

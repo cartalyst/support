@@ -326,6 +326,10 @@ class CollectionTest extends PHPUnit_Framework_TestCase {
 		$collection->makeFirst('c');
 
 		$this->assertEquals('C', $collection->first());
+
+		$collection->makeFirst('z');
+
+		$this->assertEquals('C', $collection->first());
 	}
 
 	/** @test */
@@ -340,6 +344,10 @@ class CollectionTest extends PHPUnit_Framework_TestCase {
 		$this->assertEquals('D', $collection->last());
 
 		$collection->makeLast('c');
+
+		$this->assertEquals('C', $collection->last());
+
+		$collection->makeLast('z');
 
 		$this->assertEquals('C', $collection->last());
 	}
