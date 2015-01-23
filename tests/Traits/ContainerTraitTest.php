@@ -1,4 +1,5 @@
-<?php namespace Cartalyst\Support\Tests\Traits;
+<?php
+
 /**
  * Part of the Support package.
  *
@@ -7,48 +8,48 @@
  * Licensed under the Cartalyst PSL License.
  *
  * This source file is subject to the Cartalyst PSL License that is
- * bundled with this package in the license.txt file.
+ * bundled with this package in the LICENSE file.
  *
  * @package    Support
  * @version    1.1.0
  * @author     Cartalyst LLC
  * @license    Cartalyst PSL
- * @copyright  (c) 2011-2014, Cartalyst LLC
+ * @copyright  (c) 2011-2015, Cartalyst LLC
  * @link       http://cartalyst.com
  */
+
+namespace Cartalyst\Support\Tests\Traits;
 
 use Mockery as m;
 use PHPUnit_Framework_TestCase;
 use Cartalyst\Support\Traits\ContainerTrait;
 
-class ContainerTraitTest extends PHPUnit_Framework_TestCase {
+class ContainerTraitTest extends PHPUnit_Framework_TestCase
+{
+    /**
+     * Close mockery.
+     *
+     * @return void
+     */
+    public function tearDown()
+    {
+        m::close();
+    }
 
-	/**
-	 * Close mockery.
-	 *
-	 * @return void
-	 */
-	public function tearDown()
-	{
-		m::close();
-	}
+    /** @test **/
+    public function it_can_set_and_retrieve_the_container()
+    {
+        $containerTrait = new ContainerTraitStub;
 
-	/** @test **/
-	public function it_can_set_and_retrieve_the_container()
-	{
-		$containerTrait = new ContainerTraitStub;
+        $container = m::mock('Illuminate\Container\Container');
 
-		$container = m::mock('Illuminate\Container\Container');
+        $containerTrait->setContainer($container);
 
-		$containerTrait->setContainer($container);
-
-		$this->assertSame($containerTrait->getContainer(), $container);
-	}
-
+        $this->assertSame($containerTrait->getContainer(), $container);
+    }
 }
 
-class ContainerTraitStub {
-
-	use ContainerTrait;
-
+class ContainerTraitStub
+{
+    use ContainerTrait;
 }

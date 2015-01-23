@@ -1,4 +1,5 @@
-<?php namespace Cartalyst\Support\Traits;
+<?php
+
 /**
  * Part of the Support package.
  *
@@ -7,37 +8,38 @@
  * Licensed under the Cartalyst PSL License.
  *
  * This source file is subject to the Cartalyst PSL License that is
- * bundled with this package in the license.txt file.
+ * bundled with this package in the LICENSE file.
  *
  * @package    Support
  * @version    1.1.0
  * @author     Cartalyst LLC
  * @license    Cartalyst PSL
- * @copyright  (c) 2011-2014, Cartalyst LLC
+ * @copyright  (c) 2011-2015, Cartalyst LLC
  * @link       http://cartalyst.com
  */
 
-trait NamespacedEntityTrait {
+namespace Cartalyst\Support\Traits;
 
-	/**
-	 * Returns the entity namespace.
-	 *
-	 * @return string
-	 */
-	public static function getEntityNamespace()
-	{
-		return isset(static::$entityNamespace) ? static::$entityNamespace : get_called_class();
-	}
+trait NamespacedEntityTrait
+{
+    /**
+     * Returns the entity namespace.
+     *
+     * @return string
+     */
+    public static function getEntityNamespace()
+    {
+        return isset(static::$entityNamespace) ? static::$entityNamespace : get_called_class();
+    }
 
-	/**
-	 * Sets the entity namespace.
-	 *
-	 * @param  string  $namespace
-	 * @return void
-	 */
-	public static function setEntityNamespace($namespace)
-	{
-		static::$entityNamespace = $namespace;
-	}
-
+    /**
+     * Sets the entity namespace.
+     *
+     * @param  string  $namespace
+     * @return void
+     */
+    public static function setEntityNamespace($namespace)
+    {
+        static::$entityNamespace = $namespace;
+    }
 }

@@ -1,4 +1,5 @@
-<?php namespace Cartalyst\Support\Handlers;
+<?php
+
 /**
  * Part of the Support package.
  *
@@ -7,26 +8,27 @@
  * Licensed under the Cartalyst PSL License.
  *
  * This source file is subject to the Cartalyst PSL License that is
- * bundled with this package in the license.txt file.
+ * bundled with this package in the LICENSE file.
  *
  * @package    Support
  * @version    1.1.0
  * @author     Cartalyst LLC
  * @license    Cartalyst PSL
- * @copyright  (c) 2011-2014, Cartalyst LLC
+ * @copyright  (c) 2011-2015, Cartalyst LLC
  * @link       http://cartalyst.com
  */
 
+namespace Cartalyst\Support\Handlers;
+
 use Illuminate\Events\Dispatcher;
 
-interface EventHandlerInterface {
-
-	/**
-	 * Registers the event listeners using the given dispatcher instance.
-	 *
-	 * @param  \Illuminate\Events\Dispatcher  $dispatcher
-	 * @return void
-	 */
-	public function subscribe(Dispatcher $dispatcher);
-
+interface EventHandlerInterface
+{
+    /**
+     * Registers the event listeners using the given dispatcher instance.
+     *
+     * @param  \Illuminate\Events\Dispatcher  $dispatcher
+     * @return void
+     */
+    public function subscribe(Dispatcher $dispatcher);
 }
