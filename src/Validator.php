@@ -48,6 +48,20 @@ abstract class Validator implements ValidatorInterface
     protected $rules = [];
 
     /**
+     * The validation messages.
+     *
+     * @var array
+     */
+    protected $messages = [];
+
+    /**
+     * The validation customAttributes.
+     *
+     * @var array
+     */
+    protected $customAttributes = [];
+
+    /**
      * Flag that indicates if we should bypass the validation.
      *
      * @var bool
@@ -78,6 +92,42 @@ abstract class Validator implements ValidatorInterface
     public function setRules(array $rules)
     {
         $this->rules = $rules;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getMessages()
+    {
+        return $this->messages;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setMessages(array $messages)
+    {
+        $this->messages = $messages;
+
+        return $this;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getCustomAttributes()
+    {
+        return $this->customAttributes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setCustomAttributes(array $customAttributes)
+    {
+        $this->customAttributes = $customAttributes;
 
         return $this;
     }
@@ -155,7 +205,11 @@ abstract class Validator implements ValidatorInterface
 
         $rules = $this->getBoundRules();
 
-        $validator = $this->factory->make($data, $rules);
+        $messages = $this->getMessages();
+
+        $customAttributes = $this->getCustomAttributes();
+
+        $validator = $this->factory->make($data, $rules, $messages, $customAttributes);
 
         return $validator->errors();
     }

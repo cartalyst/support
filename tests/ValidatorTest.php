@@ -80,6 +80,32 @@ class ValidatorTest extends PHPUnit_Framework_TestCase
     }
 
     /** @test */
+    public function it_can_get_and_set_the_messages()
+    {
+        $this->validator->setMessages([
+            'name'  => 'name is required',
+            'email' => 'email is required'
+        ]);
+        $this->assertCount(2, $this->validator->getMessages());
+
+        $this->validator->setMessages([]);
+        $this->assertCount(0, $this->validator->getMessages());
+    }
+
+    /** @test */
+    public function it_can_get_and_set_the_custom_attributes()
+    {
+        $this->validator->setCustomAttributes([
+            'first_name' => 'First Name',
+            'last_name'  => 'Last Name'
+        ]);
+        $this->assertCount(2, $this->validator->getCustomAttributes());
+
+        $this->validator->setCustomAttributes([]);
+        $this->assertCount(0, $this->validator->getCustomAttributes());
+    }
+
+    /** @test */
     public function it_can_define_scenarios()
     {
         $scenario = $this->validator->on('update', [ 'foo' ]);
