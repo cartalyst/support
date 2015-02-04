@@ -11,7 +11,7 @@
  * bundled with this package in the LICENSE file.
  *
  * @package    Support
- * @version    1.1.0
+ * @version    1.1.1
  * @author     Cartalyst LLC
  * @license    Cartalyst PSL
  * @copyright  (c) 2011-2015, Cartalyst LLC
@@ -35,7 +35,7 @@ interface ValidatorInterface
      * @param  array  $rules
      * @return $this
      */
-    public function setRules(array $rules);    
+    public function setRules(array $rules);
 
     /**
      * Returns the validation messages.

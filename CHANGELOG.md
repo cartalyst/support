@@ -11,7 +11,15 @@ We do not give estimated times for completion on `Accepted` Proposals.
 
 ---
 
+#### v1.1.1 - 2015-02-04
+
+`UPDATED`
+
+- Added the ability to set custom messages and custom attributes on the Validator class.
+
 #### v1.1.0 - 2015-01-23
+
+`ADDED`
 
 - `Collection` A Collection class, similar to the Laravel Collection but more simpler.
 - `Mailer` A Mailer class that implements the `Illuminate\Mail\Mailer` with lots of helper methods.
@@ -21,6 +29,8 @@ We do not give estimated times for completion on `Accepted` Proposals.
 - `ValidatorTrait` Common methods and properties for doing validation.
 
 #### v1.0.0 - 2014-08-07
+
+`INIT`
 
 - `EventTrait` Common methods and properties for dispatching events.
 - `RepositoryTrait` Common methods and properties for use across repositories.
