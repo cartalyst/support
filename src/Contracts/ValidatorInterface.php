@@ -35,7 +35,37 @@ interface ValidatorInterface
      * @param  array  $rules
      * @return $this
      */
-    public function setRules(array $rules);
+    public function setRules(array $rules);    
+
+    /**
+     * Returns the validation messages.
+     *
+     * @return array
+     */
+    public function getMessages();
+
+    /**
+     * Sets the validation messages.
+     *
+     * @param  array  $messages
+     * @return $this
+     */
+    public function setMessages(array $messages);
+
+    /**
+     * Returns the validation custom attributes.
+     *
+     * @return array
+     */
+    public function getCustomAttributes();
+
+    /**
+     * Sets the validation custom attributes.
+     *
+     * @param  array  $customAttributes
+     * @return $this
+     */
+    public function setCustomAttributes(array $customAttributes);
 
     /**
      * Create a scope scenario.
