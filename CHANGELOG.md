@@ -11,6 +11,12 @@ We do not give estimated times for completion on `Accepted` Proposals.
 
 ---
 
+### v1.2.0 - 2016-06-21
+
+`ADDED`
+
+- `NamespacedEntityInterface` A contract for namespacing entities.
+
 ### v1.1.2 - 2015-06-24
 
 `UPDATED`
