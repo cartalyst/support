@@ -7,7 +7,7 @@
 		"laravel",
 		"cartalyst"
 	],
-	"license": "proprietary",
+	"license": "BSD-3-Clause",
 	"authors": [
 		{
 			"name": "Cartalyst LLC",
@@ -49,5 +49,5 @@
 			"dev-master": "1.1.x-dev"
 		}
 	},
-	"minimum-stability": "dev"
+	"minimum-stability": "stable"
 }

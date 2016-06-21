@@ -1,32 +1,32 @@
 # Support
 
-[![Build Status](http://ci.cartalyst.com/build-status/svg/18)](http://ci.cartalyst.com/build-status/view/18)
+[![Build Status](https://travis-ci.org/cartalyst/support.svg?branch=1.1)](https://travis-ci.org/cartalyst/support)
 
 A support package that provides flexible and reusable helper methods and traits for commonly used functionalities.
 
-Part of the Cartalyst Arsenal & licensed [Cartalyst PSL](LICENSE). Code well, rock on.
+An open source package by [Cartalyst](https://cartalyst.com), code well, rock on!
 
 ## Documentation
 
-Reader-friendly Documentation can be found here. [Support Manual](https://cartalyst.com/manual/support).
+Reader-friendly Documentation can be found here. [Support Manual](https://cartalyst.com/manual/support/1.1).
 
 Raw files can be found via this projects docs/version branch.
 
-- [1.0](https://github.com/cartalyst/support/tree/docs/1.0)
 - [1.1](https://github.com/cartalyst/support/tree/docs/1.1)
+- [1.0](https://github.com/cartalyst/support/tree/docs/1.0)
 
 ## Changelog
 
 Important versions listed below. Refer to the [Changelog](CHANGELOG.md) for a full history of the project.
 
-- [1.0](CHANGELOG.md) - 2014-08-07
 - [1.1](CHANGELOG.md) - 2015-01-23
+- [1.0](CHANGELOG.md) - 2014-08-07
 
 ## Support
 
 The following support channels can be used for contact.
 
-- [Twitter](https://cartalyst.com/@twitter)
+- [Twitter](https://twitter.com/cartalyst)
 - [Email](mailto:help@cartalyst.com)
 
 Bug reports, feature requests, and pull requests can be submitted by following our [Contribution Guide](CONTRIBUTING.md).
