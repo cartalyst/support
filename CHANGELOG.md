@@ -11,6 +11,12 @@ We do not give estimated times for completion on `Accepted` Proposals.
 
 ---
 
+### v2.0.0 - 2017-02-23
+
+`UPDATED`
+
+- use `Illuminate\Contracts\Events\Dispatcher` for events.
+
 ### v1.2.0 - 2016-06-21
 
 `ADDED`

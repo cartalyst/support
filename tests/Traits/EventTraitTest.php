@@ -11,10 +11,10 @@
  * bundled with this package in the LICENSE file.
  *
  * @package    Support
- * @version    1.2.0
+ * @version    2.0.0
  * @author     Cartalyst LLC
  * @license    BSD License (3-clause)
- * @copyright  (c) 2011-2015, Cartalyst LLC
+ * @copyright  (c) 2011-2017, Cartalyst LLC
  * @link       http://cartalyst.com
  */
 
@@ -41,7 +41,7 @@ class EventTraitTest extends PHPUnit_Framework_TestCase
     {
         $eventTrait = new EventTraitStub;
 
-        $dispatcher = m::mock('Illuminate\Events\Dispatcher');
+        $dispatcher = m::mock('Illuminate\Contracts\Events\Dispatcher');
 
         $eventTrait->setDispatcher($dispatcher);
 
@@ -53,7 +53,7 @@ class EventTraitTest extends PHPUnit_Framework_TestCase
     {
         $eventTrait = new EventTraitStub;
 
-        $dispatcher = m::mock('Illuminate\Events\Dispatcher');
+        $dispatcher = m::mock('Illuminate\Contracts\Events\Dispatcher');
 
         $dispatcher->shouldReceive('fire')->once();
 
