@@ -195,7 +195,7 @@ abstract class Validator implements ValidatorInterface
      * Executes the data validation against the service rules.
      *
      * @param  array  $data
-     * @return \Illuminate\Validation\Validator
+     * @return \Illuminate\Contracts\Validation\Validator
      */
     protected function executeValidation(array $data)
     {

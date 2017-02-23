@@ -89,7 +89,7 @@ interface ValidatorInterface
      * Register bindings to the scenario.
      *
      * @param  array  $bindings
-     * @return \Illuminate\Validation\Validator
+     * @return \Illuminate\Contracts\Validation\Validator
      */
     public function bind(array $bindings);
 
@@ -105,7 +105,7 @@ interface ValidatorInterface
      * Execute validation service.
      *
      * @param  array  $data
-     * @return \Illuminate\Validation\Validator
+     * @return \Illuminate\Contracts\Validation\Validator
      */
     public function validate(array $data);
 

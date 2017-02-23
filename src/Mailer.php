@@ -20,8 +20,8 @@
 
 namespace Cartalyst\Support;
 
-use Illuminate\Mail\Mailer as IlluminateMailer;
 use Illuminate\Config\Repository as IlluminateConfig;
+use Illuminate\Contracts\Mail\Mailer as IlluminateMailer;
 
 class Mailer
 {
@@ -77,7 +77,7 @@ class Mailer
     /**
      * The Illuminate mailer instance.
      *
-     * @var \Illuminate\Mail\Mailer
+     * @var \Illuminate\Contracts\Mail\Mailer
      */
     protected $mailer;
 
@@ -91,7 +91,7 @@ class Mailer
     /**
      * Constructor.
      *
-     * @param  \Illuminate\Mail\Mailer  $mailer
+     * @param  \Illuminate\Contracts\Mail\Mailer  $mailer
      * @param  \Illuminate\Config\Repository  $config
      * @return void
      */
@@ -105,7 +105,7 @@ class Mailer
     /**
      * Returns the Illuminate mailer instance.
      *
-     * @return \Illuminate\Mail\Mailer
+     * @return \Illuminate\Contracts\Mail\Mailer
      */
     public function getMailer()
     {
@@ -115,7 +115,7 @@ class Mailer
     /**
      * Sets the Illuminate mailer instance.
      *
-     * @param  \Illuminate\Mail\Mailer  $mailer
+     * @param  \Illuminate\Contracts\Mail\Mailer  $mailer
      * @return $this
      */
     public function setMailer(IlluminateMailer $mailer)

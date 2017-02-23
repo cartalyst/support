@@ -23,7 +23,7 @@ namespace Cartalyst\Support\Tests;
 use Mockery as m;
 use Cartalyst\Support\Mailer;
 use PHPUnit_Framework_TestCase;
-use Illuminate\Mail\Mailer as IlluminateMailer;
+use Illuminate\Contracts\Mail\Mailer as IlluminateMailer;
 
 class MailerTest extends PHPUnit_Framework_TestCase
 {
@@ -40,7 +40,7 @@ class MailerTest extends PHPUnit_Framework_TestCase
     public function setUp()
     {
         $this->mailer = new Mailer(
-            m::mock('Illuminate\Mail\Mailer'),
+            m::mock('Illuminate\Contracts\Mail\Mailer'),
             m::mock('Illuminate\Config\Repository')
         );
     }
@@ -59,7 +59,7 @@ class MailerTest extends PHPUnit_Framework_TestCase
     public function it_can_be_instantiated()
     {
         $mailer = new Mailer(
-            m::mock('Illuminate\Mail\Mailer'),
+            m::mock('Illuminate\Contracts\Mail\Mailer'),
             m::mock('Illuminate\Config\Repository')
         );
 
@@ -69,15 +69,15 @@ class MailerTest extends PHPUnit_Framework_TestCase
     /** @test */
     public function it_can_get_the_illuminate_mailer_instance()
     {
-        $this->assertInstanceOf('Illuminate\Mail\Mailer', $this->mailer->getMailer());
+        $this->assertInstanceOf('Illuminate\Contracts\Mail\Mailer', $this->mailer->getMailer());
     }
 
     /** @test */
     public function it_can_set_the_illuminate_mailer_instance()
     {
-        $this->mailer->setMailer(m::mock('Illuminate\Mail\Mailer'));
+        $this->mailer->setMailer(m::mock('Illuminate\Contracts\Mail\Mailer'));
 
-        $this->assertInstanceOf('Illuminate\Mail\Mailer', $this->mailer->getMailer());
+        $this->assertInstanceOf('Illuminate\Contracts\Mail\Mailer', $this->mailer->getMailer());
     }
 
     /** @test */
@@ -376,7 +376,7 @@ class MailerTest extends PHPUnit_Framework_TestCase
     /** @test */
     public function it_can_send_emails()
     {
-        $baseMailer = m::mock('Illuminate\Mail\Mailer');
+        $baseMailer = m::mock('Illuminate\Contracts\Mail\Mailer');
         $baseMailer->shouldReceive('send')->once();
 
         $this->mailer->setMailer($baseMailer);
@@ -386,7 +386,7 @@ class MailerTest extends PHPUnit_Framework_TestCase
     /** @test */
     public function it_can_queue_emails()
     {
-        $baseMailer = m::mock('Illuminate\Mail\Mailer');
+        $baseMailer = m::mock('Illuminate\Contracts\Mail\Mailer');
         $baseMailer->shouldReceive('queue')->once();
 
         $this->mailer->setMailer($baseMailer);
@@ -396,7 +396,7 @@ class MailerTest extends PHPUnit_Framework_TestCase
     /** @test */
     public function it_can_queue_emails_on_a_specific_queue()
     {
-        $baseMailer = m::mock('Illuminate\Mail\Mailer');
+        $baseMailer = m::mock('Illuminate\Contracts\Mail\Mailer');
         $baseMailer->shouldReceive('queueOn')->once()->with('foo', null, [], m::any());
 
         $this->mailer->setMailer($baseMailer);
@@ -406,7 +406,7 @@ class MailerTest extends PHPUnit_Framework_TestCase
     /** @test */
     public function it_can_queue_a_delayed_email()
     {
-        $baseMailer = m::mock('Illuminate\Mail\Mailer');
+        $baseMailer = m::mock('Illuminate\Contracts\Mail\Mailer');
         $baseMailer->shouldReceive('later')->once()->with(20, null, [], m::any());
 
         $this->mailer->setMailer($baseMailer);
@@ -416,7 +416,7 @@ class MailerTest extends PHPUnit_Framework_TestCase
     /** @test */
     public function it_can_prepare_the_callback()
     {
-        $baseMailer = m::mock('Illuminate\Mail\Mailer');
+        $baseMailer = m::mock('Illuminate\Contracts\Mail\Mailer');
         $config     = m::mock('Illuminate\Config\Repository');
 
         $mailerStub = new MailerStub(
