@@ -41,7 +41,7 @@ class ContainerTraitTest extends PHPUnit_Framework_TestCase
     {
         $containerTrait = new ContainerTraitStub;
 
-        $container = m::mock('Illuminate\Container\Container');
+        $container = m::mock('Illuminate\Contracts\Container\Container');
 
         $containerTrait->setContainer($container);
 

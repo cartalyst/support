@@ -21,8 +21,8 @@
 namespace Cartalyst\Support\Tests\Handlers;
 
 use PHPUnit_Framework_TestCase;
-use Illuminate\Container\Container;
 use Cartalyst\Support\Handlers\EventHandler;
+use Illuminate\Contracts\Container\Container;
 
 class EventHandlerTest extends PHPUnit_Framework_TestCase
 {

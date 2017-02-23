@@ -20,21 +20,21 @@
 
 namespace Cartalyst\Support\Traits;
 
-use Illuminate\Container\Container;
+use Illuminate\Contracts\Container\Container;
 
 trait ContainerTrait
 {
     /**
      * The IoC container instance.
      *
-     * @var \Illuminate\Container\Container
+     * @var \Illuminate\Contracts\Container\Container
      */
     protected $container;
 
     /**
      * Returns the IoC container.
      *
-     * @return \Illuminate\Container\Container
+     * @return \Illuminate\Contracts\Container\Container
      */
     public function getContainer()
     {
@@ -44,7 +44,7 @@ trait ContainerTrait
     /**
      * Sets the IoC container instance.
      *
-     * @param  \Illuminate\Container\Container  $container
+     * @param  \Illuminate\Contracts\Container\Container  $container
      * @return $this
      */
     public function setContainer(Container $container)

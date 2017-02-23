@@ -20,21 +20,21 @@
 
 namespace Cartalyst\Support\Handlers;
 
-use Illuminate\Container\Container;
+use Illuminate\Contracts\Container\Container;
 
 class EventHandler
 {
     /**
      * The container instance.
      *
-     * @var \Illuminate\Container\Container
+     * @var \Illuminate\Contracts\Container\Container
      */
     protected $app;
 
     /**
      * Constructor.
      *
-     * @param  \Illuminate\Container\Container  $app
+     * @param  \Illuminate\Contracts\Container\Container  $app
      * @return void
      */
     public function __construct(Container $app)
