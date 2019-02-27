@@ -55,7 +55,8 @@ class EventTraitTest extends PHPUnit_Framework_TestCase
 
         $dispatcher = m::mock('Illuminate\Contracts\Events\Dispatcher');
 
-        $dispatcher->shouldReceive('fire')->once();
+        $method = method_exists($dispatcher, 'fire') ? 'fire' : 'dispatch';
+        $dispatcher->shouldReceive($method)->once();
 
         $eventTrait->setDispatcher($dispatcher);
 
