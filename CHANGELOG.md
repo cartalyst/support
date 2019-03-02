@@ -11,6 +11,12 @@ We do not give estimated times for completion on `Accepted` Proposals.
 
 ---
 
+### v2.0.3 - 2019-03-02
+
+`REVISED`
+
+- Minor tweak on event dispatcher method resolving
+
 ### v2.0.2 - 2019-03-02
 
 `FIXED`
