@@ -19,6 +19,7 @@ Raw files can be found via this projects docs/version branch.
 
 Important versions listed below. Refer to the [Changelog](CHANGELOG.md) for a full history of the project.
 
+- [2.0](CHANGELOG.md) - 2017-02-23
 - [1.1](CHANGELOG.md) - 2015-01-23
 - [1.0](CHANGELOG.md) - 2014-08-07
 
@@ -41,4 +42,4 @@ Bug reports, feature requests, and pull requests can be submitted by following o
 
 This software is released under the [BSD 3-Clause](LICENSE) License.
 
-© 2011-2017 Cartalyst LLC, All rights reserved.
+© 2011-2019 Cartalyst LLC, All rights reserved.
