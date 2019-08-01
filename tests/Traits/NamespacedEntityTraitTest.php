@@ -1,6 +1,6 @@
 <?php
 
-/**
+/*
  * Part of the Support package.
  *
  * NOTICE OF LICENSE
@@ -20,15 +20,15 @@
 
 namespace Cartalyst\Support\Tests\Traits;
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use Cartalyst\Support\Traits\NamespacedEntityTrait;
 
-class NamespacedEntityTraitTest extends PHPUnit_Framework_TestCase
+class NamespacedEntityTraitTest extends TestCase
 {
-    /** @test **/
+    /** @test */
     public function it_can_get_and_set_the_entity_namespace()
     {
-        $entity = new NamespacedEntityTraitStub;
+        $entity = new NamespacedEntityTraitStub();
 
         $this->assertSame('Cartalyst\Support\Tests\Traits\NamespacedEntityTraitStub', $entity->getEntityNamespace());
 

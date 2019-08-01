@@ -1,6 +1,6 @@
 <?php
 
-/**
+/*
  * Part of the Support package.
  *
  * NOTICE OF LICENSE
@@ -21,11 +21,11 @@
 namespace Cartalyst\Support\Tests;
 
 use Mockery as m;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use Cartalyst\Support\Validator;
 use Illuminate\Validation\Factory as IlluminateValidator;
 
-class ValidatorTest extends PHPUnit_Framework_TestCase
+class ValidatorTest extends TestCase
 {
     /**
      * The Validator instance.
@@ -35,9 +35,9 @@ class ValidatorTest extends PHPUnit_Framework_TestCase
     protected $validator;
 
     /**
-     * Setup resources and dependencies
+     * {@inheritdoc}
      */
-    public function setUp()
+    protected function setUp(): void
     {
         $this->validator = new ValidatorStub(
             $this->getRealValidator()
@@ -45,11 +45,9 @@ class ValidatorTest extends PHPUnit_Framework_TestCase
     }
 
     /**
-     * Close mockery.
-     *
-     * @return void
+     * {@inheritdoc}
      */
-    public function tearDown()
+    protected function tearDown(): void
     {
         m::close();
     }
@@ -84,7 +82,7 @@ class ValidatorTest extends PHPUnit_Framework_TestCase
     {
         $this->validator->setMessages([
             'name'  => 'name is required',
-            'email' => 'email is required'
+            'email' => 'email is required',
         ]);
         $this->assertCount(2, $this->validator->getMessages());
 
@@ -97,7 +95,7 @@ class ValidatorTest extends PHPUnit_Framework_TestCase
     {
         $this->validator->setCustomAttributes([
             'first_name' => 'First Name',
-            'last_name'  => 'Last Name'
+            'last_name'  => 'Last Name',
         ]);
         $this->assertCount(2, $this->validator->getCustomAttributes());
 
@@ -108,7 +106,7 @@ class ValidatorTest extends PHPUnit_Framework_TestCase
     /** @test */
     public function it_can_define_scenarios()
     {
-        $scenario = $this->validator->on('update', [ 'foo' ]);
+        $scenario = $this->validator->on('update', ['foo']);
 
         $this->assertInstanceOf('Cartalyst\Support\Validator', $scenario);
     }
@@ -116,7 +114,7 @@ class ValidatorTest extends PHPUnit_Framework_TestCase
     /** @test */
     public function it_can_register_bindings()
     {
-        $this->validator->bind([ 'foo' => 'bar' ]);
+        $this->validator->bind(['foo' => 'bar']);
     }
 
     /** @test */
@@ -126,8 +124,8 @@ class ValidatorTest extends PHPUnit_Framework_TestCase
 
         $this->assertCount(1, $messages);
 
-        $messages = $this->validator->on('update')->bind([ 'email' => 'popop@asdad.com' ])->validate([
-            'email' => 'john@doe.com'
+        $messages = $this->validator->on('update')->bind(['email' => 'popop@asdad.com'])->validate([
+            'email' => 'john@doe.com',
         ]);
 
         $this->assertTrue($messages->isEmpty());

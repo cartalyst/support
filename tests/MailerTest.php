@@ -1,6 +1,6 @@
 <?php
 
-/**
+/*
  * Part of the Support package.
  *
  * NOTICE OF LICENSE
@@ -22,10 +22,9 @@ namespace Cartalyst\Support\Tests;
 
 use Mockery as m;
 use Cartalyst\Support\Mailer;
-use PHPUnit_Framework_TestCase;
-use Illuminate\Contracts\Mail\Mailer as IlluminateMailer;
+use PHPUnit\Framework\TestCase;
 
-class MailerTest extends PHPUnit_Framework_TestCase
+class MailerTest extends TestCase
 {
     /**
      * The Mailer instance.
@@ -35,22 +34,20 @@ class MailerTest extends PHPUnit_Framework_TestCase
     protected $mailer;
 
     /**
-     * Setup resources and dependencies
+     * {@inheritdoc}
      */
-    public function setUp()
+    protected function setUp(): void
     {
         $this->mailer = new Mailer(
-            m::mock('Illuminate\Contracts\Mail\Mailer'),
-            m::mock('Illuminate\Config\Repository')
+            m::mock(\Illuminate\Contracts\Mail\Mailer::class),
+            m::mock(\Illuminate\Config\Repository::class)
         );
     }
 
     /**
-     * Close mockery.
-     *
-     * @return void
+     * {@inheritdoc}
      */
-    public function tearDown()
+    protected function tearDown(): void
     {
         m::close();
     }
@@ -59,40 +56,41 @@ class MailerTest extends PHPUnit_Framework_TestCase
     public function it_can_be_instantiated()
     {
         $mailer = new Mailer(
-            m::mock('Illuminate\Contracts\Mail\Mailer'),
-            m::mock('Illuminate\Config\Repository')
+            m::mock(\Illuminate\Contracts\Mail\Mailer::class),
+            m::mock(\Illuminate\Config\Repository::class)
         );
 
-        $this->assertInstanceOf('Cartalyst\Support\Mailer', $mailer);
+        $this->assertInstanceOf(Mailer::class, $mailer);
     }
 
     /** @test */
     public function it_can_get_the_illuminate_mailer_instance()
     {
-        $this->assertInstanceOf('Illuminate\Contracts\Mail\Mailer', $this->mailer->getMailer());
+        $this->assertInstanceOf(\Illuminate\Contracts\Mail\Mailer::class, $this->mailer->getMailer());
     }
 
     /** @test */
     public function it_can_set_the_illuminate_mailer_instance()
     {
-        $this->mailer->setMailer(m::mock('Illuminate\Contracts\Mail\Mailer'));
+        $this->mailer->setMailer(m::mock(\Illuminate\Contracts\Mail\Mailer::class));
 
-        $this->assertInstanceOf('Illuminate\Contracts\Mail\Mailer', $this->mailer->getMailer());
+        $this->assertInstanceOf(\Illuminate\Contracts\Mail\Mailer::class, $this->mailer->getMailer());
     }
 
     /** @test */
     public function it_can_get_the_illuminate_config_repository_instance()
     {
-        $this->assertInstanceOf('Illuminate\Config\Repository', $this->mailer->getConfig());
+        $this->assertInstanceOf(\Illuminate\Config\Repository::class, $this->mailer->getConfig());
     }
 
     /** @test */
     public function it_can_set_the_illuminate_config_repository_instance()
     {
-        $this->mailer->setConfig(m::mock('Illuminate\Config\Repository'));
+        $this->mailer->setConfig(m::mock(\Illuminate\Config\Repository::class));
 
-        $this->assertInstanceOf('Illuminate\Config\Repository', $this->mailer->getConfig());
+        $this->assertInstanceOf(\Illuminate\Config\Repository::class, $this->mailer->getConfig());
     }
+
     /** @test */
     public function it_can_get_the_from_name()
     {
@@ -104,7 +102,7 @@ class MailerTest extends PHPUnit_Framework_TestCase
     {
         $this->mailer->setFromName('John Doe');
 
-        $this->assertEquals('John Doe', $this->mailer->getFromName());
+        $this->assertSame('John Doe', $this->mailer->getFromName());
     }
 
     /** @test */
@@ -118,7 +116,7 @@ class MailerTest extends PHPUnit_Framework_TestCase
     {
         $this->mailer->setFromAddress('foo@bar.baz');
 
-        $this->assertEquals('foo@bar.baz', $this->mailer->getFromAddress());
+        $this->assertSame('foo@bar.baz', $this->mailer->getFromAddress());
     }
 
     /** @test */
@@ -132,7 +130,7 @@ class MailerTest extends PHPUnit_Framework_TestCase
     {
         $this->mailer->setSubject('Example Subject');
 
-        $this->assertEquals('Example Subject', $this->mailer->getSubject());
+        $this->assertSame('Example Subject', $this->mailer->getSubject());
     }
 
     /** @test */
@@ -157,10 +155,9 @@ class MailerTest extends PHPUnit_Framework_TestCase
 
         $recipients = $this->mailer->getRecipients('to');
 
-        $this->assertEquals(1, count($recipients));
-        $this->assertEquals([
-            'foo@bar.baz' =>
-            [
+        $this->assertCount(1, $recipients);
+        $this->assertSame([
+            'foo@bar.baz' => [
                 'email' => 'foo@bar.baz',
                 'name'  => 'Foo Bar',
             ],
@@ -179,33 +176,28 @@ class MailerTest extends PHPUnit_Framework_TestCase
 
         $recipients = $this->mailer->getRecipients('to');
 
-        $this->assertEquals(2, count($recipients));
-        $this->assertEquals([
-            'foo@bar.baz' =>
-            [
+        $this->assertCount(2, $recipients);
+        $this->assertSame([
+            'foo@bar.baz' => [
                 'email' => 'foo@bar.baz',
                 'name'  => 'Foo Bar',
             ],
-            'john@doe.com' =>
-            [
+            'john@doe.com' => [
                 'email' => 'john@doe.com',
                 'name'  => 'John Doe',
             ],
         ], $recipients);
 
-
         $recipients = $this->mailer->getRecipients();
 
-        $this->assertEquals(2, count($recipients['to']));
-        $this->assertEquals([
+        $this->assertCount(2, $recipients['to']);
+        $this->assertSame([
             'to' => [
-                'foo@bar.baz' =>
-                [
+                'foo@bar.baz' => [
                     'email' => 'foo@bar.baz',
                     'name'  => 'Foo Bar',
                 ],
-                'john@doe.com' =>
-                [
+                'john@doe.com' => [
                     'email' => 'john@doe.com',
                     'name'  => 'John Doe',
                 ],
@@ -226,13 +218,11 @@ class MailerTest extends PHPUnit_Framework_TestCase
     public function it_can_set_multiple_to_recipients()
     {
         $this->mailer->setTo([
-            'foo@bar.baz' =>
-            [
+            'foo@bar.baz' => [
                 'email' => 'foo@bar.baz',
                 'name'  => 'Foo Bar',
             ],
-            'john@doe.com' =>
-            [
+            'john@doe.com' => [
                 'email' => 'john@doe.com',
                 'name'  => 'John Doe',
             ],
@@ -255,13 +245,11 @@ class MailerTest extends PHPUnit_Framework_TestCase
     public function it_can_set_multiple_cc_recipients()
     {
         $this->mailer->setCc([
-            'foo@bar.baz' =>
-            [
+            'foo@bar.baz' => [
                 'email' => 'foo@bar.baz',
                 'name'  => 'Foo Bar',
             ],
-            'john@doe.com' =>
-            [
+            'john@doe.com' => [
                 'email' => 'john@doe.com',
                 'name'  => 'John Doe',
             ],
@@ -284,13 +272,11 @@ class MailerTest extends PHPUnit_Framework_TestCase
     public function it_can_set_multiple_bcc_recipients()
     {
         $this->mailer->setBcc([
-            'foo@bar.baz' =>
-            [
+            'foo@bar.baz' => [
                 'email' => 'foo@bar.baz',
                 'name'  => 'Foo Bar',
             ],
-            'john@doe.com' =>
-            [
+            'john@doe.com' => [
                 'email' => 'john@doe.com',
                 'name'  => 'John Doe',
             ],
@@ -313,13 +299,11 @@ class MailerTest extends PHPUnit_Framework_TestCase
     public function it_can_set_multiple_reply_to_recipients()
     {
         $this->mailer->setReplyTo([
-            'foo@bar.baz' =>
-            [
+            'foo@bar.baz' => [
                 'email' => 'foo@bar.baz',
                 'name'  => 'Foo Bar',
             ],
-            'john@doe.com' =>
-            [
+            'john@doe.com' => [
                 'email' => 'john@doe.com',
                 'name'  => 'John Doe',
             ],
@@ -376,7 +360,7 @@ class MailerTest extends PHPUnit_Framework_TestCase
     /** @test */
     public function it_can_send_emails()
     {
-        $baseMailer = m::mock('Illuminate\Contracts\Mail\Mailer');
+        $baseMailer = m::mock(\Illuminate\Contracts\Mail\Mailer::class);
         $baseMailer->shouldReceive('send')->once();
 
         $this->mailer->setMailer($baseMailer);
@@ -386,7 +370,7 @@ class MailerTest extends PHPUnit_Framework_TestCase
     /** @test */
     public function it_can_queue_emails()
     {
-        $baseMailer = m::mock('Illuminate\Contracts\Mail\Mailer');
+        $baseMailer = m::mock(\Illuminate\Contracts\Mail\Mailer::class);
         $baseMailer->shouldReceive('queue')->once();
 
         $this->mailer->setMailer($baseMailer);
@@ -396,7 +380,7 @@ class MailerTest extends PHPUnit_Framework_TestCase
     /** @test */
     public function it_can_queue_emails_on_a_specific_queue()
     {
-        $baseMailer = m::mock('Illuminate\Contracts\Mail\Mailer');
+        $baseMailer = m::mock(\Illuminate\Contracts\Mail\Mailer::class);
         $baseMailer->shouldReceive('queueOn')->once()->with('foo', null, [], m::any());
 
         $this->mailer->setMailer($baseMailer);
@@ -406,7 +390,7 @@ class MailerTest extends PHPUnit_Framework_TestCase
     /** @test */
     public function it_can_queue_a_delayed_email()
     {
-        $baseMailer = m::mock('Illuminate\Contracts\Mail\Mailer');
+        $baseMailer = m::mock(\Illuminate\Contracts\Mail\Mailer::class);
         $baseMailer->shouldReceive('later')->once()->with(20, null, [], m::any());
 
         $this->mailer->setMailer($baseMailer);
@@ -416,8 +400,8 @@ class MailerTest extends PHPUnit_Framework_TestCase
     /** @test */
     public function it_can_prepare_the_callback()
     {
-        $baseMailer = m::mock('Illuminate\Contracts\Mail\Mailer');
-        $config     = m::mock('Illuminate\Config\Repository');
+        $baseMailer = m::mock(\Illuminate\Contracts\Mail\Mailer::class);
+        $config     = m::mock(\Illuminate\Config\Repository::class);
 
         $mailerStub = new MailerStub(
             $baseMailer,
@@ -447,14 +431,14 @@ class MailerStub extends Mailer
             'foo',
             'bar' => [
                 'baz',
-                []
+                [],
             ],
         ];
 
         $this->dataAttachments = [
             'data' => [
                 'foobar',
-                []
+                [],
             ],
         ];
 

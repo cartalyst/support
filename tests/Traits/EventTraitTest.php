@@ -1,6 +1,6 @@
 <?php
 
-/**
+/*
  * Part of the Support package.
  *
  * NOTICE OF LICENSE
@@ -21,25 +21,23 @@
 namespace Cartalyst\Support\Tests\Traits;
 
 use Mockery as m;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use Cartalyst\Support\Traits\EventTrait;
 
-class EventTraitTest extends PHPUnit_Framework_TestCase
+class EventTraitTest extends TestCase
 {
     /**
-     * Close mockery.
-     *
-     * @return void
+     * {@inheritdoc}
      */
-    public function tearDown()
+    protected function tearDown(): void
     {
         m::close();
     }
 
-    /** @test **/
+    /** @test */
     public function it_can_set_and_retrieve_the_dispatcher()
     {
-        $eventTrait = new EventTraitStub;
+        $eventTrait = new EventTraitStub();
 
         $dispatcher = m::mock('Illuminate\Contracts\Events\Dispatcher');
 
@@ -48,10 +46,10 @@ class EventTraitTest extends PHPUnit_Framework_TestCase
         $this->assertSame($eventTrait->getDispatcher(), $dispatcher);
     }
 
-    /** @test **/
+    /** @test */
     public function it_can_set_and_retrieve_the_dispatcher_status()
     {
-        $eventTrait = new EventTraitStub;
+        $eventTrait = new EventTraitStub();
 
         $dispatcher = m::mock('Illuminate\Contracts\Events\Dispatcher');
 

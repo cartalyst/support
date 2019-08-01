@@ -1,6 +1,6 @@
 <?php
 
-/**
+/*
  * Part of the Support package.
  *
  * NOTICE OF LICENSE
@@ -20,23 +20,27 @@
 
 namespace Cartalyst\Support\Tests\Handlers;
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use Illuminate\Container\Container;
 use Cartalyst\Support\Handlers\EventHandler;
 
-class EventHandlerTest extends PHPUnit_Framework_TestCase
+class EventHandlerTest extends TestCase
 {
-    /** @test **/
+    /** @test */
     public function it_can_be_instantiated()
     {
-        new EventHandlerStub(new Container);
+        $eventHandler = new EventHandlerStub(new Container());
+
+        $this->assertInstanceOf(EventHandler::class, $eventHandler);
     }
 
     /** @test */
     public function it_can_retrieve_dynamic_objects_from_the_container()
     {
-        $container = new Container;
-        $container->bind('foo', function () { return 'bar'; });
+        $container = new Container();
+        $container->bind('foo', function () {
+            return 'bar';
+        });
 
         $handler = new EventHandlerStub($container);
 

@@ -1,6 +1,6 @@
 <?php
 
-/**
+/*
  * Part of the Support package.
  *
  * NOTICE OF LICENSE
@@ -20,27 +20,31 @@
 
 namespace Cartalyst\Support\Tests;
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use Cartalyst\Support\Collection;
 
-class CollectionTest extends PHPUnit_Framework_TestCase
+class CollectionTest extends TestCase
 {
     /** @test */
     public function a_collection_can_be_instantiated()
     {
         $collection = new Collection('main');
+
+        $this->assertInstanceOf(Collection::class, $collection);
     }
 
     /** @test */
     public function it_can_get_all_the_items_from_the_collection()
     {
         $collection = new Collection('main');
+
         $this->assertEmpty($collection->all());
 
         $collection = new Collection('main');
         $collection->put('foo', 'Foo');
         $collection->put('bar', 'Bar');
-        $this->assertEquals([
+
+        $this->assertSame([
             'foo' => 'Foo',
             'bar' => 'Bar',
         ], $collection->all());
@@ -50,11 +54,13 @@ class CollectionTest extends PHPUnit_Framework_TestCase
     public function it_can_get_the_total_items_from_the_collection()
     {
         $collection = new Collection('main');
+
         $this->assertCount(0, $collection);
 
         $collection = new Collection('main');
         $collection->put('foo', 'Foo');
         $collection->put('bar', 'Bar');
+
         $this->assertCount(2, $collection);
     }
 
@@ -62,11 +68,13 @@ class CollectionTest extends PHPUnit_Framework_TestCase
     public function it_can_check_an_item_exists_on_the_collection()
     {
         $collection = new Collection('main');
+
         $this->assertFalse($collection->exists('foo'));
 
         $collection = new Collection('main');
         $collection->put('foo', 'Foo');
         $collection->put('bar', 'Bar');
+
         $this->assertTrue($collection->exists('foo'));
     }
 
@@ -74,30 +82,36 @@ class CollectionTest extends PHPUnit_Framework_TestCase
     public function it_can_find_an_item_from_the_collection()
     {
         $collection = new Collection('main');
+
         $this->assertNull($collection->find('foo'));
 
         $collection = new Collection('main');
         $collection->put('foo', 'Foo');
         $collection->put('bar', 'Bar');
-        $this->assertEquals('Foo', $collection->find('foo'));
+
+        $this->assertSame('Foo', $collection->find('foo'));
     }
 
     /** @test */
     public function it_can_return_the_first_item_from_the_collection()
     {
         $collection = new Collection('main');
+
         $collection->put('name', 'Bar');
 
-        $this->assertEquals('Bar', $collection->first());
+        $this->assertSame('Bar', $collection->first());
     }
 
     /** @test */
     public function it_can_get_a_collection_attribute()
     {
         $collection = new Collection('main');
-        $this->assertEquals(null, $collection->get('foo'));
+
+        $this->assertNull($collection->get('foo'));
+
         $collection->foo = 'Foo';
-        $this->assertEquals('Foo', $collection->get('foo'));
+
+        $this->assertSame('Foo', $collection->get('foo'));
     }
 
     /** @test */
@@ -107,7 +121,7 @@ class CollectionTest extends PHPUnit_Framework_TestCase
         $collection->put('foo', 'Foo');
         $collection->name = 'Foo';
 
-        $this->assertEquals([
+        $this->assertSame([
             'id'   => 'main',
             'name' => 'Foo',
         ], $collection->getAttributes());
@@ -117,8 +131,11 @@ class CollectionTest extends PHPUnit_Framework_TestCase
     public function it_can_check_if_the_collection_has_an_item()
     {
         $collection = new Collection('main');
+
         $this->assertFalse($collection->has('foo'));
+
         $collection->put('foo', 'Foo');
+
         $this->assertTrue($collection->has('foo'));
     }
 
@@ -146,19 +163,23 @@ class CollectionTest extends PHPUnit_Framework_TestCase
         $collection->put('foo', 'Foo');
         $collection->put('bar', 'Bar');
 
-        $this->assertEquals('Bar', $collection->last());
+        $this->assertSame('Bar', $collection->last());
     }
 
     /** @test */
     public function it_can_retrieve_the_collection_items_as_an_array()
     {
         $collection = new Collection('main');
-        $this->assertEquals(null, $collection->get('foo'));
-        $this->assertEquals([
+
+        $this->assertNull($collection->get('foo'));
+
+        $this->assertSame([
             'id' => 'main',
         ], $collection->getAttributes());
+
         $collection->put('foo', 'Foo');
-        $this->assertEquals(['foo' => 'Foo'], $collection->toArray());
+
+        $this->assertSame(['foo' => 'Foo'], $collection->toArray());
     }
 
     /** @test */
@@ -180,58 +201,68 @@ class CollectionTest extends PHPUnit_Framework_TestCase
     /** @test */
     public function it_can_test_the_offset_methods()
     {
-        $collection = new Collection('main');
+        $collection         = new Collection('main');
         $collection['name'] = 'Foo';
+
         $this->assertTrue(isset($collection['name']));
-        $this->assertEquals('Foo', $collection['name']);
+        $this->assertSame('Foo', $collection['name']);
+
         unset($collection['name']);
+
         $this->assertFalse(isset($collection['name']));
 
-
-        $collection = new Collection('main');
+        $collection       = new Collection('main');
         $collection->name = 'Foo';
-        $this->assertTrue(isset($collection->name));
-        unset($collection->name);
-        $this->assertFalse(isset($collection->name));
 
+        $this->assertTrue(isset($collection->name));
+
+        unset($collection->name);
+
+        $this->assertFalse(isset($collection->name));
 
         $collection = new Collection('main');
         $collection->put('foo.bar', 'baz');
-        $this->assertEquals('baz', $collection['foo.bar']);
-        unset($collection['foo.bar']);
-        $this->assertFalse($collection->exists('foo.bar'));
 
+        $this->assertSame('baz', $collection['foo.bar']);
+
+        unset($collection['foo.bar']);
+
+        $this->assertFalse($collection->exists('foo.bar'));
 
         $collection = new Collection('main');
         $collection->put('foo.bar.baz', 'bat');
-        $this->assertEquals('bat', $collection['foo.bar.baz']);
+
+        $this->assertSame('bat', $collection['foo.bar.baz']);
         $this->assertTrue($collection->exists('foo.bar.baz'));
     }
 
     /** @test */
     public function a_collection_can_have_attributes()
     {
-        $collection = new CollectionStub('main');
+        $collection       = new CollectionStub('main');
         $collection->name = 'Foo';
 
-        $this->assertEquals('Test Foo', $collection->name);
+        $this->assertSame('Test Foo', $collection->name);
     }
 
     /** @test */
     public function it_can_use_magic_methods_to_set_items()
     {
-        $collection = new Collection('main');
+        $collection     = new Collection('main');
         $collection->id = 'foo';
-        $this->assertEquals('foo', $collection->id);
 
-        $collection = new Collection('main');
+        $this->assertSame('foo', $collection->id);
+
+        $collection     = new Collection('main');
         $collection->id = 'foo';
-        $this->assertEquals('foo', $collection->id);
+
+        $this->assertSame('foo', $collection->id);
 
         $collection = new Collection('main', function ($collection) {
             $collection->id = 'foo';
         });
-        $this->assertEquals('foo', $collection->id);
+
+        $this->assertSame('foo', $collection->id);
     }
 
     /** @test */
@@ -242,7 +273,7 @@ class CollectionTest extends PHPUnit_Framework_TestCase
         $collection->put('bar', ['id' => 2, 'name' => 'Bar']);
         $collection->put('baz', ['id' => 3, 'name' => 'Baz']);
 
-        $this->assertEquals([
+        $this->assertSame([
             'foo' => [
                 'id'   => 1,
                 'name' => 'Foo',
@@ -257,7 +288,7 @@ class CollectionTest extends PHPUnit_Framework_TestCase
             ],
         ], $collection->all());
 
-        $this->assertEquals([
+        $this->assertSame([
             'bar' => [
                 'id'   => 2,
                 'name' => 'Bar',
@@ -302,10 +333,10 @@ class CollectionTest extends PHPUnit_Framework_TestCase
         $this->assertCount(2, $collection->all());
 
         $this->assertTrue($collection->first()->valid);
-        $this->assertEquals('Foo', $collection->first()->name);
+        $this->assertSame('Foo', $collection->first()->name);
 
         $this->assertTrue($collection->last()->valid);
-        $this->assertEquals('Bar', $collection->last()->name);
+        $this->assertSame('Bar', $collection->last()->name);
     }
 
     /** @test */
@@ -332,15 +363,15 @@ class CollectionTest extends PHPUnit_Framework_TestCase
         $collection->put('c', 'C');
         $collection->put('d', 'D');
 
-        $this->assertEquals('A', $collection->first());
+        $this->assertSame('A', $collection->first());
 
         $collection->makeFirst('c');
 
-        $this->assertEquals('C', $collection->first());
+        $this->assertSame('C', $collection->first());
 
         $collection->makeFirst('z');
 
-        $this->assertEquals('C', $collection->first());
+        $this->assertSame('C', $collection->first());
     }
 
     /** @test */
@@ -352,15 +383,15 @@ class CollectionTest extends PHPUnit_Framework_TestCase
         $collection->put('c', 'C');
         $collection->put('d', 'D');
 
-        $this->assertEquals('D', $collection->last());
+        $this->assertSame('D', $collection->last());
 
         $collection->makeLast('c');
 
-        $this->assertEquals('C', $collection->last());
+        $this->assertSame('C', $collection->last());
 
         $collection->makeLast('z');
 
-        $this->assertEquals('C', $collection->last());
+        $this->assertSame('C', $collection->last());
     }
 }
 
@@ -375,7 +406,7 @@ class CollectionStub extends Collection
     {
         foreach ($this->items as $item) {
             $item->valid = true;
-            $item->name = ucfirst($item->id);
+            $item->name  = ucfirst($item->id);
         }
     }
 }

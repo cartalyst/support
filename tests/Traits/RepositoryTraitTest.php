@@ -1,6 +1,6 @@
 <?php
 
-/**
+/*
  * Part of the Support package.
  *
  * NOTICE OF LICENSE
@@ -20,25 +20,25 @@
 
 namespace Cartalyst\Support\Tests\Traits;
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use Cartalyst\Support\Traits\RepositoryTrait;
 
-class RepositoryTraitTest extends PHPUnit_Framework_TestCase
+class RepositoryTraitTest extends TestCase
 {
-    /** @test **/
+    /** @test */
     public function it_can_set_and_retrieve_the_model()
     {
-        $repository = new RepositoryTraitStub;
+        $repository = new RepositoryTraitStub();
 
         $repository->setModel('FooModelStub');
 
-        $this->assertEquals('FooModelStub', $repository->getModel());
+        $this->assertSame('FooModelStub', $repository->getModel());
     }
 
-    /** @test **/
+    /** @test */
     public function it_can_create_a_model()
     {
-        $repository = new RepositoryTraitStub;
+        $repository = new RepositoryTraitStub();
 
         $repository->setModel('StdClass');
 
@@ -48,11 +48,11 @@ class RepositoryTraitTest extends PHPUnit_Framework_TestCase
     /** @test */
     public function it_can_call_dynamic_methods()
     {
-        $repository = new RepositoryTraitStub;
+        $repository = new RepositoryTraitStub();
 
         $repository->setModel('Cartalyst\Support\Tests\Traits\FooModelStub');
 
-        $this->assertEquals('Cartalyst\Support\Tests\Traits\FooModelStub', $repository->getModel());
+        $this->assertSame('Cartalyst\Support\Tests\Traits\FooModelStub', $repository->getModel());
 
         $this->assertSame('bar', $repository->foo());
     }

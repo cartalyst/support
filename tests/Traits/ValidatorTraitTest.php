@@ -1,6 +1,6 @@
 <?php
 
-/**
+/*
  * Part of the Support package.
  *
  * NOTICE OF LICENSE
@@ -21,25 +21,23 @@
 namespace Cartalyst\Support\Tests\Traits;
 
 use Mockery as m;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use Cartalyst\Support\Traits\ValidatorTrait;
 
-class ValidatorTraitTest extends PHPUnit_Framework_TestCase
+class ValidatorTraitTest extends TestCase
 {
     /**
-     * Close mockery.
-     *
-     * @return void
+     * {@inheritdoc}
      */
-    public function tearDown()
+    protected function tearDown(): void
     {
         m::close();
     }
 
-    /** @test **/
+    /** @test */
     public function it_can_set_and_retrieve_the_validator_instance()
     {
-        $validator = new ValidatorTraitStub;
+        $validator = new ValidatorTraitStub();
 
         $mailer = m::mock('Cartalyst\Support\Validator');
 
