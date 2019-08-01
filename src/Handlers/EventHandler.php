@@ -1,6 +1,6 @@
 <?php
 
-/**
+/*
  * Part of the Support package.
  *
  * NOTICE OF LICENSE
@@ -34,7 +34,8 @@ class EventHandler
     /**
      * Constructor.
      *
-     * @param  \Illuminate\Contracts\Container\Container  $app
+     * @param \Illuminate\Contracts\Container\Container $app
+     *
      * @return void
      */
     public function __construct(Container $app)
@@ -45,7 +46,8 @@ class EventHandler
     /**
      * Dynamically retrieve objects from the container.
      *
-     * @param  string  $key
+     * @param string $key
+     *
      * @return mixed
      */
     public function __get($key)

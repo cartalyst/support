@@ -1,6 +1,6 @@
 <?php
 
-/**
+/*
  * Part of the Support package.
  *
  * NOTICE OF LICENSE
@@ -29,13 +29,14 @@ trait NamespacedEntityTrait
      */
     public static function getEntityNamespace()
     {
-        return isset(static::$entityNamespace) ? static::$entityNamespace : get_called_class();
+        return static::$entityNamespace ?? get_called_class();
     }
 
     /**
      * Sets the entity namespace.
      *
-     * @param  string  $namespace
+     * @param string $namespace
+     *
      * @return void
      */
     public static function setEntityNamespace($namespace)

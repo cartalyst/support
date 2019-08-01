@@ -1,6 +1,6 @@
 <?php
 
-/**
+/*
  * Part of the Support package.
  *
  * NOTICE OF LICENSE
@@ -44,7 +44,8 @@ trait ValidatorTrait
     /**
      * Sets the Validator instance.
      *
-     * @param  \Cartalyst\Support\Validator  $validator
+     * @param \Cartalyst\Support\Validator $validator
+     *
      * @return $this
      */
     public function setValidator(Validator $validator)

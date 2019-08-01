@@ -1,6 +1,6 @@
 <?php
 
-/**
+/*
  * Part of the Support package.
  *
  * NOTICE OF LICENSE
@@ -25,7 +25,8 @@ trait RepositoryTrait
     /**
      * Create a new instance of the model.
      *
-     * @param  array  $data
+     * @param array $data
+     *
      * @return mixed
      */
     public function createModel(array $data = [])
@@ -48,7 +49,8 @@ trait RepositoryTrait
     /**
      * Runtime override of the model.
      *
-     * @param  string  $model
+     * @param string $model
+     *
      * @return $this
      */
     public function setModel($model)
@@ -61,8 +63,9 @@ trait RepositoryTrait
     /**
      * Dynamically pass missing methods to the model.
      *
-     * @param  string  $method
-     * @param  array  $parameters
+     * @param string $method
+     * @param array  $parameters
+     *
      * @return mixed
      */
     public function __call($method, $parameters)

@@ -1,6 +1,6 @@
 <?php
 
-/**
+/*
  * Part of the Support package.
  *
  * NOTICE OF LICENSE
@@ -51,7 +51,8 @@ trait EventTrait
     /**
      * Sets the event dispatcher instance.
      *
-     * @param  \Illuminate\Contracts\Events\Dispatcher  $dispatcher
+     * @param \Illuminate\Contracts\Events\Dispatcher $dispatcher
+     *
      * @return $this
      */
     public function setDispatcher(Dispatcher $dispatcher)
@@ -74,7 +75,8 @@ trait EventTrait
     /**
      * Sets the event dispatcher status.
      *
-     * @param  bool  $status
+     * @param bool $status
+     *
      * @return $this
      */
     public function setDispatcherStatus($status)
@@ -107,9 +109,10 @@ trait EventTrait
     /**
      * Fires an event.
      *
-     * @param  string  $event
-     * @param  mixed  $payload
-     * @param  bool  $halt
+     * @param string $event
+     * @param mixed  $payload
+     * @param bool   $halt
+     *
      * @return mixed
      */
     protected function fireEvent($event, $payload = [], $halt = false)
@@ -118,7 +121,7 @@ trait EventTrait
 
         $status = $this->dispatcherStatus;
 
-        if ( ! $dispatcher || $status === false) {
+        if (! $dispatcher || $status === false) {
             return;
         }
 

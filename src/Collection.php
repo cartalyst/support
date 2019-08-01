@@ -1,6 +1,6 @@
 <?php
 
-/**
+/*
  * Part of the Support package.
  *
  * NOTICE OF LICENSE
@@ -43,8 +43,9 @@ class Collection implements ArrayAccess, Countable
     /**
      * Constructor.
      *
-     * @param  mixed  $id
-     * @param  \Closure  $callback
+     * @param mixed    $id
+     * @param \Closure $callback
+     *
      * @return void
      */
     public function __construct($id, Closure $callback = null)
@@ -69,14 +70,15 @@ class Collection implements ArrayAccess, Countable
     /**
      * Attaches the given collection into the current collection.
      *
-     * @param  \Cartalyst\Support\Collection  $collection
-     * @param  string  $type
+     * @param \Cartalyst\Support\Collection $collection
+     * @param string                        $type
+     *
      * @return $this
      */
     public function attach(Collection $collection, $type = 'Cartalyst\Support\Collection')
     {
-        if ( ! is_null($type) && $collection instanceof $type) {
-            if ( ! $this->find($collection->id)) {
+        if (! is_null($type) && $collection instanceof $type) {
+            if (! $this->find($collection->id)) {
                 $this->put($collection->id, $collection);
             }
         }
@@ -99,7 +101,8 @@ class Collection implements ArrayAccess, Countable
     /**
      * Executes the given callback.
      *
-     * @param  \Closure  $callback
+     * @param \Closure $callback
+     *
      * @return void
      */
     public function executeCallback(Closure $callback = null)
@@ -112,7 +115,8 @@ class Collection implements ArrayAccess, Countable
     /**
      * Determines if the given item exists in the collection.
      *
-     * @param  string  $key
+     * @param string $key
+     *
      * @return bool
      */
     public function exists($key)
@@ -123,7 +127,8 @@ class Collection implements ArrayAccess, Countable
     /**
      * Returns the given item from the collection.
      *
-     * @param  mixed  $key
+     * @param mixed $key
+     *
      * @return mixed
      */
     public function find($key)
@@ -146,8 +151,9 @@ class Collection implements ArrayAccess, Countable
     /**
      * Get an attribute from the collection.
      *
-     * @param  string  $key
-     * @param  mixed  $default
+     * @param string $key
+     * @param mixed  $default
+     *
      * @return mixed
      */
     public function get($key, $default = null)
@@ -172,7 +178,8 @@ class Collection implements ArrayAccess, Countable
     /**
      * Determines if an item exists in the collection by key.
      *
-     * @param  mixed  $key
+     * @param mixed $key
+     *
      * @return bool
      */
     public function has($key)
@@ -209,13 +216,14 @@ class Collection implements ArrayAccess, Countable
     /**
      * Makes the given item to be sorted first on the collection.
      *
-     * @param  string  $item
+     * @param string $item
+     *
      * @return $this
      */
     public function makeFirst($item)
     {
         if (isset($this->items[$item])) {
-            $this->items = [ $item => $this->items[$item] ] + $this->items;
+            $this->items = [$item => $this->items[$item]] + $this->items;
         }
 
         return $this;
@@ -224,7 +232,8 @@ class Collection implements ArrayAccess, Countable
     /**
      * Makes the given item to be sorted last on the collection.
      *
-     * @param  string  $item
+     * @param string $item
+     *
      * @return $this
      */
     public function makeLast($item)
@@ -243,7 +252,8 @@ class Collection implements ArrayAccess, Countable
     /**
      * Determines if the given offset exists.
      *
-     * @param  string  $key
+     * @param string $key
+     *
      * @return bool
      */
     public function offsetExists($key)
@@ -260,7 +270,8 @@ class Collection implements ArrayAccess, Countable
     /**
      * Get the value for a given offset.
      *
-     * @param  string  $key
+     * @param string $key
+     *
      * @return mixed
      */
     public function offsetGet($key)
@@ -275,8 +286,9 @@ class Collection implements ArrayAccess, Countable
     /**
      * Set the value at the given offset.
      *
-     * @param  string  $key
-     * @param  mixed  $value
+     * @param string $key
+     * @param mixed  $value
+     *
      * @return void
      */
     public function offsetSet($key, $value)
@@ -289,7 +301,8 @@ class Collection implements ArrayAccess, Countable
     /**
      * Unset the value at the given offset.
      *
-     * @param  string  $key
+     * @param string $key
+     *
      * @return void
      */
     public function offsetUnset($key)
@@ -302,7 +315,8 @@ class Collection implements ArrayAccess, Countable
     /**
      * Unset the value at the given offset.
      *
-     * @param  string  $key
+     * @param string $key
+     *
      * @return void
      */
     public function pull($key)
@@ -313,8 +327,9 @@ class Collection implements ArrayAccess, Countable
     /**
      * Set the value at the given offset.
      *
-     * @param  string  $key
-     * @param  mixed  $value
+     * @param string $key
+     * @param mixed  $value
+     *
      * @return void
      */
     public function put($key, $value)
@@ -325,9 +340,10 @@ class Collection implements ArrayAccess, Countable
     /**
      * Sort the collection using the given Closure.
      *
-     * @param  \Closure|string  $callback
-     * @param  int  $options
-     * @param  bool  $descending
+     * @param \Closure|string $callback
+     * @param int             $options
+     * @param bool            $descending
+     *
      * @return $this
      */
     public function sortBy($callback, $options = SORT_REGULAR, $descending = false)
@@ -342,7 +358,7 @@ class Collection implements ArrayAccess, Countable
 
                 foreach (explode('.', $callback) as $segment) {
                     if (is_array($item)) {
-                        if ( ! array_key_exists($segment, $item)) {
+                        if (! array_key_exists($segment, $item)) {
                             return null;
                         }
 
@@ -378,8 +394,9 @@ class Collection implements ArrayAccess, Countable
     /**
      * Sort the collection in descending order using the given Closure.
      *
-     * @param  \Closure|string  $callback
-     * @param  int  $options
+     * @param \Closure|string $callback
+     * @param int             $options
+     *
      * @return $this
      */
     public function sortByDesc($callback, $options = SORT_REGULAR)
@@ -402,7 +419,8 @@ class Collection implements ArrayAccess, Countable
     /**
      * Dynamically retrieve the value of an attribute.
      *
-     * @param  string  $key
+     * @param string $key
+     *
      * @return mixed
      */
     public function __get($key)
@@ -419,8 +437,9 @@ class Collection implements ArrayAccess, Countable
     /**
      * Dynamically set the value of an attribute.
      *
-     * @param  string  $key
-     * @param  mixed  $value
+     * @param string $key
+     * @param mixed  $value
+     *
      * @return void
      */
     public function __set($key, $value)
@@ -431,7 +450,8 @@ class Collection implements ArrayAccess, Countable
     /**
      * Dynamically check if an attribute is set.
      *
-     * @param  string  $key
+     * @param string $key
+     *
      * @return void
      */
     public function __isset($key)
@@ -442,7 +462,8 @@ class Collection implements ArrayAccess, Countable
     /**
      * Dynamically unset an attribute.
      *
-     * @param  string  $key
+     * @param string $key
+     *
      * @return void
      */
     public function __unset($key)

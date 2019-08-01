@@ -1,6 +1,6 @@
 <?php
 
-/**
+/*
  * Part of the Support package.
  *
  * NOTICE OF LICENSE
@@ -27,13 +27,14 @@ interface NamespacedEntityInterface
      *
      * @return string
      */
-    public static function getEntityNamespace();
+    public static function getEntityNamespace(): string;
 
     /**
      * Sets the entity namespace.
      *
-     * @param  string  $namespace
+     * @param string $namespace
+     *
      * @return void
      */
-    public static function setEntityNamespace($namespace);
+    public static function setEntityNamespace(string $namespace): void;
 }

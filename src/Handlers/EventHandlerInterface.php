@@ -1,6 +1,6 @@
 <?php
 
-/**
+/*
  * Part of the Support package.
  *
  * NOTICE OF LICENSE
@@ -27,7 +27,8 @@ interface EventHandlerInterface
     /**
      * Registers the event listeners using the given dispatcher instance.
      *
-     * @param  \Illuminate\Contracts\Events\Dispatcher  $dispatcher
+     * @param \Illuminate\Contracts\Events\Dispatcher $dispatcher
+     *
      * @return void
      */
     public function subscribe(Dispatcher $dispatcher);

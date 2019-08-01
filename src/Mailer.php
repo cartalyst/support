@@ -1,6 +1,6 @@
 <?php
 
-/**
+/*
  * Part of the Support package.
  *
  * NOTICE OF LICENSE
@@ -30,7 +30,7 @@ class Mailer
      *
      * @var string
      */
-    protected $subject = null;
+    protected $subject;
 
     /**
      * The email from address.
@@ -91,8 +91,9 @@ class Mailer
     /**
      * Constructor.
      *
-     * @param  \Illuminate\Contracts\Mail\Mailer  $mailer
-     * @param  \Illuminate\Config\Repository  $config
+     * @param \Illuminate\Contracts\Mail\Mailer $mailer
+     * @param \Illuminate\Config\Repository     $config
+     *
      * @return void
      */
     public function __construct(IlluminateMailer $mailer, IlluminateConfig $config)
@@ -115,7 +116,8 @@ class Mailer
     /**
      * Sets the Illuminate mailer instance.
      *
-     * @param  \Illuminate\Contracts\Mail\Mailer  $mailer
+     * @param \Illuminate\Contracts\Mail\Mailer $mailer
+     *
      * @return $this
      */
     public function setMailer(IlluminateMailer $mailer)
@@ -138,7 +140,8 @@ class Mailer
     /**
      * Sets the Illuminate config repository instance.
      *
-     * @param  \Illuminate\Config\Repository  $config
+     * @param \Illuminate\Config\Repository $config
+     *
      * @return $this
      */
     public function setConfig(IlluminateConfig $config)
@@ -161,7 +164,8 @@ class Mailer
     /**
      * Sets the from name.
      *
-     * @param  string  $from
+     * @param string $from
+     *
      * @return $this
      */
     public function setFromName($from)
@@ -184,7 +188,8 @@ class Mailer
     /**
      * Sets the from address.
      *
-     * @param  string  $from
+     * @param string $from
+     *
      * @return $this
      */
     public function setFromAddress($from)
@@ -207,7 +212,8 @@ class Mailer
     /**
      * Sets the email subject.
      *
-     * @param  string  $subject
+     * @param string $subject
+     *
      * @return $this
      */
     public function setSubject($subject)
@@ -220,7 +226,8 @@ class Mailer
     /**
      * Returns all the email recipients.
      *
-     * @param  string  $type
+     * @param string $type
+     *
      * @return array
      */
     public function getRecipients($type = null)
@@ -231,8 +238,9 @@ class Mailer
     /**
      * Sets multiple recipients by type.
      *
-     * @param  string  $type
-     * @param  array  $recipients
+     * @param string $type
+     * @param array  $recipients
+     *
      * @return $this
      */
     public function setRecipients($type, array $recipients = [])
@@ -251,7 +259,8 @@ class Mailer
     /**
      * Sets multiple "To" recipients.
      *
-     * @param  array  $recipients
+     * @param array $recipients
+     *
      * @return $this
      */
     public function setTo(array $recipients = [])
@@ -262,8 +271,9 @@ class Mailer
     /**
      * Sets a single "To" recipient.
      *
-     * @param  string  $email
-     * @param  string  $name
+     * @param string $email
+     * @param string $name
+     *
      * @return $this
      */
     public function addTo($email, $name)
@@ -274,7 +284,8 @@ class Mailer
     /**
      * Sets multiple "Cc" recipients.
      *
-     * @param  array  $recipients
+     * @param array $recipients
+     *
      * @return $this
      */
     public function setCc(array $recipients = [])
@@ -285,8 +296,9 @@ class Mailer
     /**
      * Sets a single "Cc" recipient.
      *
-     * @param  string  $email
-     * @param  string  $name
+     * @param string $email
+     * @param string $name
+     *
      * @return $this
      */
     public function addCc($email, $name)
@@ -297,7 +309,8 @@ class Mailer
     /**
      * Sets multiple "Bcc" recipients.
      *
-     * @param  array  $recipients
+     * @param array $recipients
+     *
      * @return $this
      */
     public function setBcc(array $recipients = [])
@@ -308,8 +321,9 @@ class Mailer
     /**
      * Sets a single "Bcc" recipient.
      *
-     * @param  string  $email
-     * @param  string  $name
+     * @param string $email
+     * @param string $name
+     *
      * @return $this
      */
     public function addBcc($email, $name)
@@ -320,7 +334,8 @@ class Mailer
     /**
      * Sets multiple "replyTo" recipients.
      *
-     * @param  array  $recipients
+     * @param array $recipients
+     *
      * @return $this
      */
     public function setReplyTo(array $recipients = [])
@@ -331,8 +346,9 @@ class Mailer
     /**
      * Sets a single "replyTo" recipient.
      *
-     * @param  string  $email
-     * @param  string  $name
+     * @param string $email
+     * @param string $name
+     *
      * @return $this
      */
     public function addReplyTo($email, $name)
@@ -340,11 +356,17 @@ class Mailer
         return $this->setRecipient('replyTo', $email, $name);
     }
 
+    public function getView()
+    {
+        return $this->view;
+    }
+
     /**
      * Sets the email view and view data.
      *
-     * @param  string  $view
-     * @param  array  $data
+     * @param string $view
+     * @param array  $data
+     *
      * @return $this
      */
     public function setView($view, array $data = [])
@@ -369,7 +391,8 @@ class Mailer
     /**
      * Sets multiple attachments.
      *
-     * @param  array  $attachments
+     * @param array $attachments
+     *
      * @return $this
      */
     public function setAttachments(array $attachments = [])
@@ -382,7 +405,8 @@ class Mailer
     /**
      * Sets a single attachment.
      *
-     * @param  string  $attachment
+     * @param string $attachment
+     *
      * @return $this
      */
     public function addAttachment($attachment)
@@ -405,7 +429,8 @@ class Mailer
     /**
      * Sets multiple data attachments.
      *
-     * @param  array  $attachments
+     * @param array $attachments
+     *
      * @return $this
      */
     public function setDataAttachments(array $attachments = [])
@@ -418,7 +443,8 @@ class Mailer
     /**
      * Sets a single data attachment.
      *
-     * @param  string  $attachment
+     * @param string $attachment
+     *
      * @return $this
      */
     public function addDataAttachment($attachment)
@@ -441,7 +467,8 @@ class Mailer
     /**
      * Queue a new e-mail message for sending.
      *
-     * @param  string  $queue
+     * @param string $queue
+     *
      * @return int
      */
     public function queue($queue = null)
@@ -452,7 +479,8 @@ class Mailer
     /**
      * Queue a new e-mail message for sending on the given queue.
      *
-     * @param  string  $queue
+     * @param string $queue
+     *
      * @return int
      */
     public function queueOn($queue)
@@ -463,7 +491,8 @@ class Mailer
     /**
      * Queue a new e-mail message for sending after (n) seconds.
      *
-     * @param  int  $delay
+     * @param int $delay
+     *
      * @return int
      */
     public function later($delay)
@@ -517,9 +546,10 @@ class Mailer
     /**
      * Sets a single recipient by type.
      *
-     * @param  string  $type
-     * @param  string  $email
-     * @param  string  $name
+     * @param string $type
+     * @param string $email
+     * @param string $name
+     *
      * @return $this
      */
     protected function setRecipient($type, $email, $name)

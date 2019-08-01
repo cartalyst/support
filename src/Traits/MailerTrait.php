@@ -1,6 +1,6 @@
 <?php
 
-/**
+/*
  * Part of the Support package.
  *
  * NOTICE OF LICENSE
@@ -44,7 +44,8 @@ trait MailerTrait
     /**
      * Sets the Mailer instance.
      *
-     * @param  \Cartalyst\Support\Mailer  $mailer
+     * @param \Cartalyst\Support\Mailer $mailer
+     *
      * @return $this
      */
     public function setMailer(Mailer $mailer)

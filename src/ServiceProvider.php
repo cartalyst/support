@@ -1,6 +1,6 @@
 <?php
 
-/**
+/*
  * Part of the Support package.
  *
  * NOTICE OF LICENSE
@@ -32,15 +32,16 @@ abstract class ServiceProvider extends \Illuminate\Support\ServiceProvider
     /**
      * Registers a binding if it hasn't already been registered.
      *
-     * @param  string  $abstract
-     * @param  \Closure|string|null  $concrete
-     * @param  bool  $shared
-     * @param  bool|string|null  $alias
+     * @param string               $abstract
+     * @param \Closure|string|null $concrete
+     * @param bool                 $shared
+     * @param bool|string|null     $alias
+     *
      * @return void
      */
     protected function bindIf($abstract, $concrete = null, $shared = true, $alias = null)
     {
-        if ( ! $this->app->bound($abstract)) {
+        if (! $this->app->bound($abstract)) {
             $concrete = $concrete ?: $abstract;
 
             $this->app->bind($abstract, $concrete, $shared);
@@ -52,8 +53,9 @@ abstract class ServiceProvider extends \Illuminate\Support\ServiceProvider
     /**
      * Alias a type to a shorter name.
      *
-     * @param  string  $abstract
-     * @param  string  $alias
+     * @param string $abstract
+     * @param string $alias
+     *
      * @return void
      */
     protected function alias($abstract, $alias)
@@ -66,13 +68,14 @@ abstract class ServiceProvider extends \Illuminate\Support\ServiceProvider
     /**
      * Prepares the alias.
      *
-     * @param  string  $alias
-     * @param  mixed  $concrete
+     * @param string $alias
+     * @param mixed  $concrete
+     *
      * @return mixed
      */
     protected function prepareAlias($alias, $concrete)
     {
-        if ( ! $alias && $alias !== false && ! $concrete instanceof \Closure) {
+        if (! $alias && $alias !== false && ! $concrete instanceof \Closure) {
             $alias = str_replace('{class}', $concrete, $this->aliasPattern);
         }
 
