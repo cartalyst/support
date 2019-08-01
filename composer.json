@@ -19,11 +19,12 @@
         "php": ">=5.6.4"
     },
     "require-dev": {
-        "symfony/translation": "~3.2",
+        "cartalyst/php-cs-fixer-config": "^1.0",
         "illuminate/mail": "~5.0",
         "illuminate/validation": "~5.0",
         "mockery/mockery": "~0.9",
-        "phpunit/phpunit": "^5.7"
+        "phpunit/phpunit": "^5.7",
+        "symfony/translation": "~3.2"
     },
     "autoload": {
         "psr-4": {
