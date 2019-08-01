@@ -20,6 +20,7 @@
 
 namespace Cartalyst\Support;
 
+use Illuminate\Support\Arr;
 use Illuminate\Validation\Factory;
 use Cartalyst\Support\Contracts\ValidatorInterface;
 
@@ -201,7 +202,7 @@ abstract class Validator implements ValidatorInterface
      */
     protected function executeValidation(array $data)
     {
-        if ($method = array_get($this->scenario, 'on')) {
+        if ($method = Arr::get($this->scenario, 'on')) {
             call_user_func_array([$this, $method], $this->scenario['arguments']);
         }
 
@@ -230,7 +231,7 @@ abstract class Validator implements ValidatorInterface
         $rules = $this->getRules();
 
         foreach ($rules as $key => $value) {
-            if ($binding = array_get($this->bindings, $key)) {
+            if ($binding = Arr::get($this->bindings, $key)) {
                 $rules[$key] = str_replace('{'.$key.'}', $binding, $value);
             }
         }

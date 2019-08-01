@@ -20,6 +20,7 @@
 
 namespace Cartalyst\Support;
 
+use Illuminate\Support\Arr;
 use Illuminate\Config\Repository as IlluminateConfig;
 use Illuminate\Contracts\Mail\Mailer as IlluminateMailer;
 
@@ -158,7 +159,7 @@ class Mailer
      */
     public function getFromName()
     {
-        return array_get($this->from, 'name', null);
+        return Arr::get($this->from, 'name', null);
     }
 
     /**
@@ -182,7 +183,7 @@ class Mailer
      */
     public function getFromAddress()
     {
-        return array_get($this->from, 'address', null);
+        return Arr::get($this->from, 'address', null);
     }
 
     /**
@@ -232,7 +233,7 @@ class Mailer
      */
     public function getRecipients($type = null)
     {
-        return array_get($this->recipients, $type, null);
+        return Arr::get($this->recipients, $type, null);
     }
 
     /**
@@ -248,8 +249,8 @@ class Mailer
         foreach ($recipients as $key => $recipient) {
             $this->setRecipient(
                 $type,
-                array_get($recipient, 'email'),
-                array_get($recipient, 'name')
+                Arr::get($recipient, 'email'),
+                Arr::get($recipient, 'name')
             );
         }
 
@@ -511,8 +512,8 @@ class Mailer
             $mail->subject($this->subject);
 
             $mail->from(
-                array_get($this->from, 'address', $this->config->get('mail.from.address')),
-                array_get($this->from, 'name', $this->config->get('mail.from.name'))
+                Arr::get($this->from, 'address', $this->config->get('mail.from.address')),
+                Arr::get($this->from, 'name', $this->config->get('mail.from.name'))
             );
 
             foreach ($this->recipients as $type => $recipients) {
