@@ -71,6 +71,13 @@ interface ValidatorInterface
     public function setCustomAttributes(array $customAttributes): ValidatorInterface;
 
     /**
+     * Returns the validation bindings.
+     *
+     * @return array
+     */
+    public function getBindings(): array;
+
+    /**
      * Create a scope scenario.
      *
      * @param string $scenario

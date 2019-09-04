@@ -317,6 +317,8 @@ class MailerTest extends TestCase
     public function it_can_set_the_email_view_and_data()
     {
         $this->mailer->setView('foo.bar', ['foo' => 'bar']);
+
+        $this->assertSame('foo.bar', $this->mailer->getView());
     }
 
     /** @test */
@@ -361,40 +363,52 @@ class MailerTest extends TestCase
     public function it_can_send_emails()
     {
         $baseMailer = m::mock(\Illuminate\Contracts\Mail\Mailer::class);
-        $baseMailer->shouldReceive('send')->once();
+        $baseMailer->shouldReceive('send')->once()->andReturn(1);
 
         $this->mailer->setMailer($baseMailer);
-        $this->mailer->send();
+
+        $status = $this->mailer->send();
+
+        $this->assertSame(1, $status);
     }
 
     /** @test */
     public function it_can_queue_emails()
     {
         $baseMailer = m::mock(\Illuminate\Contracts\Mail\Mailer::class);
-        $baseMailer->shouldReceive('queue')->once();
+        $baseMailer->shouldReceive('queue')->once()->andReturn(1);
 
         $this->mailer->setMailer($baseMailer);
-        $this->mailer->queue();
+
+        $status = $this->mailer->queue();
+
+        $this->assertSame(1, $status);
     }
 
     /** @test */
     public function it_can_queue_emails_on_a_specific_queue()
     {
         $baseMailer = m::mock(\Illuminate\Contracts\Mail\Mailer::class);
-        $baseMailer->shouldReceive('queueOn')->once()->with('foo', null, [], m::any());
+        $baseMailer->shouldReceive('queueOn')->once()->with('foo', null, [], m::any())->andReturn(1);
 
         $this->mailer->setMailer($baseMailer);
-        $this->mailer->queueOn('foo');
+
+        $status = $this->mailer->queueOn('foo');
+
+        $this->assertSame(1, $status);
     }
 
     /** @test */
     public function it_can_queue_a_delayed_email()
     {
         $baseMailer = m::mock(\Illuminate\Contracts\Mail\Mailer::class);
-        $baseMailer->shouldReceive('later')->once()->with(20, null, [], m::any());
+        $baseMailer->shouldReceive('later')->once()->with(20, null, [], m::any())->andReturn(1);
 
         $this->mailer->setMailer($baseMailer);
-        $this->mailer->later(20);
+
+        $status = $this->mailer->later(20);
+
+        $this->assertSame(1, $status);
     }
 
     /** @test */
@@ -403,14 +417,13 @@ class MailerTest extends TestCase
         $baseMailer = m::mock(\Illuminate\Contracts\Mail\Mailer::class);
         $config     = m::mock(\Illuminate\Config\Repository::class);
 
-        $mailerStub = new MailerStub(
-            $baseMailer,
-            $config
-        );
+        $mailerStub = new MailerStub($baseMailer, $config);
 
         $config->shouldReceive('get')->twice();
 
         $mailerStub->testCallback();
+
+        $this->assertCount(1, $mailerStub->getRecipients());
     }
 }
 

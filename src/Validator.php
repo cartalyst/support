@@ -137,6 +137,14 @@ abstract class Validator implements ValidatorInterface
     /**
      * {@inheritdoc}
      */
+    public function getBindings(): array
+    {
+        return $this->bindings;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function on(string $scenario, array $arguments = [])
     {
         return $this->onScenario($scenario, $arguments);

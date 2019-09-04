@@ -115,6 +115,8 @@ class ValidatorTest extends TestCase
     public function it_can_register_bindings()
     {
         $this->validator->bind(['foo' => 'bar']);
+
+        $this->assertSame(['foo' => 'bar'], $this->validator->getBindings());
     }
 
     /** @test */
