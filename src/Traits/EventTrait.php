@@ -125,7 +125,7 @@ trait EventTrait
             return;
         }
 
-        $method = $halt ? 'until' : (method_exists($dispatcher, 'fire') ? 'fire' : 'dispatch');
+        $method = $halt ? 'until' : 'dispatch';
 
         return $dispatcher->{$method}($event, $payload);
     }
