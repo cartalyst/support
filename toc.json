@@ -1,9 +1,9 @@
 {
-	"introduction" : [
-		"index",
-		"installation"
-	],
-	"usage": [
-		"index"
-	]
+    "introduction": [
+        "index",
+        "installation"
+    ],
+    "usage": [
+        "index"
+    ]
 }

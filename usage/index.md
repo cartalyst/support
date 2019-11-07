@@ -9,15 +9,14 @@ The EventTrait makes it easy to add dispatching abilities to your classes.
 ```php
 use Cartalyst\Support\Traits\EventTrait;
 
-class FooRepository {
+class FooRepository
+{
+    use EventTrait;
 
-	use EventTrait;
-
-	public function foo()
-	{
-		$this->fireEvent('foo');
-	}
-
+    public function foo()
+    {
+        $this->fireEvent('foo');
+    }
 }
 ```
 
@@ -28,14 +27,13 @@ The RepositoryTrait makes it easy to create new instances of a model and to retr
 ```php
 use Cartalyst\Support\Traits\RepositoryTrait;
 
-class FooRepository {
+class FooRepository
+{
+    use RepositoryTrait;
 
-	use RepositoryTrait;
-
-	public function foo()
-	{
-		return $this->createModel();
-	}
-
+    public function foo()
+    {
+        return $this->createModel();
+    }
 }
 ```

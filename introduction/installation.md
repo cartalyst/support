@@ -6,7 +6,7 @@ The best and easiest way to install the Support package is with [Composer](http:
 
 Open your `composer.json` file and add the following to the `require` array:
 
-	"cartalyst/support": "1.0.*"
+    "cartalyst/support": "^2.0"
 
 > **Note:** Make sure that after the required changes your `composer.json` file is valid by running `composer validate`.
 
@@ -14,10 +14,10 @@ Open your `composer.json` file and add the following to the `require` array:
 
 Run Composer to install or update the new requirement.
 
-	php composer install
+    php composer install
 
 or
 
-	php composer update
+    php composer update
 
 Now you are able to require the `vendor/autoload.php` file to autoload the package.
