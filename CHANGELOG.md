@@ -1,5 +1,9 @@
 # Changelog
 
+### v4.0.0 - TBA
+
+- Updated for Laravel 7.
+
 ### v3.0.1 - 2019-09-10
 
 `REVISED`
