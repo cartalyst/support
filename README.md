@@ -13,6 +13,7 @@ An open source package by [Cartalyst](https://cartalyst.com), code well, rock on
 
 Version | Laravel   | PHP Version
 ------- | --------- | ------------
+5.x     | 8.x       | >= 7.3
 4.x     | 7.x       | >= 7.2.5
 3.x     | 6.x       | >= 7.2
 2.x     | 5.x       | >= 5.6.4
@@ -44,7 +45,7 @@ This software is released under the [BSD 3-Clause](LICENSE) License.
 [link-license]:   https://opensource.org/licenses/MIT
 [link-packagist]: https://packagist.org/packages/cartalyst/support
 
-[icon-travis]:    https://travis-ci.org/cartalyst/support.svg?branch=4.x
+[icon-travis]:    https://travis-ci.org/cartalyst/support.svg?branch=5.x
 [icon-license]:   https://poser.pugx.org/cartalyst/support/license
 [icon-version]:   https://poser.pugx.org/cartalyst/support/version
 [icon-downloads]: https://poser.pugx.org/cartalyst/support/downloads
