@@ -32,6 +32,13 @@ class EventHandler
     protected $app;
 
     /**
+     * Dispatch after all db transactions are committed.
+     *
+     * @var bool
+     */
+    public $afterCommit = true;
+
+    /**
      * Constructor.
      *
      * @param \Illuminate\Contracts\Container\Container $app
