@@ -1,5 +1,11 @@
 # Changelog
 
+### v5.1.1 - TBA
+
+`FIXED`
+
+- Issue with missing `afterCommit` property on the Events trait.
+
 ### v5.1.0 - 2020-12-22
 
 - Add PHP 8 support.
