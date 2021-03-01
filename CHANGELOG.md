@@ -1,5 +1,11 @@
 # Changelog
 
+### v5.1.2 - 2021-03-01
+
+`REVISED`
+
+- Use `null` for the `afterCommit` property to be inline with Laravel's default value.
+
 ### v5.1.1 - 2021-02-12
 
 `FIXED`
