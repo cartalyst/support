@@ -34,9 +34,9 @@ class EventHandler
     /**
      * Dispatch after all db transactions are committed.
      *
-     * @var bool
+     * @var bool|null
      */
-    public $afterCommit = true;
+    public $afterCommit = null;
 
     /**
      * Constructor.
