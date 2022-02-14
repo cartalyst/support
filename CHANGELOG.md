@@ -1,5 +1,9 @@
 # Changelog
 
+### v6.0.0 - 2022-02-14
+
+- Updated for Laravel 9.
+
 ### v5.1.2 - 2021-03-01
 
 `REVISED`
