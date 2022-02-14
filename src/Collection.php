@@ -91,7 +91,7 @@ class Collection implements ArrayAccess, Countable
      *
      * @return int
      */
-    public function count()
+    public function count(): int
     {
         $this->executeBeforeCallback();
 
@@ -256,7 +256,7 @@ class Collection implements ArrayAccess, Countable
      *
      * @return bool
      */
-    public function offsetExists($key)
+    public function offsetExists($key): bool
     {
         $this->executeBeforeCallback();
 
@@ -274,13 +274,15 @@ class Collection implements ArrayAccess, Countable
      *
      * @return mixed
      */
-    public function offsetGet($key)
+    public function offsetGet($key): mixed
     {
         $this->executeBeforeCallback();
 
         if (isset($this->items[$key])) {
             return $this->items[$key];
         }
+
+        return null;
     }
 
     /**
@@ -291,7 +293,7 @@ class Collection implements ArrayAccess, Countable
      *
      * @return void
      */
-    public function offsetSet($key, $value)
+    public function offsetSet($key, $value): void
     {
         $this->executeBeforeCallback();
 
@@ -305,7 +307,7 @@ class Collection implements ArrayAccess, Countable
      *
      * @return void
      */
-    public function offsetUnset($key)
+    public function offsetUnset($key): void
     {
         $this->executeBeforeCallback();
 
