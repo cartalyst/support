@@ -27,7 +27,7 @@ trait NamespacedEntityTrait
      *
      * @return string
      */
-    public static function getEntityNamespace()
+    public static function getEntityNamespace(): string
     {
         return static::$entityNamespace ?? get_called_class();
     }
@@ -39,7 +39,7 @@ trait NamespacedEntityTrait
      *
      * @return void
      */
-    public static function setEntityNamespace($namespace)
+    public static function setEntityNamespace($namespace): void
     {
         static::$entityNamespace = $namespace;
     }

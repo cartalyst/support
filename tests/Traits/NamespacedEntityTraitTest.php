@@ -20,6 +20,7 @@
 
 namespace Cartalyst\Support\Tests\Traits;
 
+use Cartalyst\Support\Contracts\NamespacedEntityInterface;
 use PHPUnit\Framework\TestCase;
 use Cartalyst\Support\Traits\NamespacedEntityTrait;
 
@@ -38,7 +39,7 @@ class NamespacedEntityTraitTest extends TestCase
     }
 }
 
-class NamespacedEntityTraitStub
+class NamespacedEntityTraitStub implements NamespacedEntityInterface
 {
     use NamespacedEntityTrait;
 
