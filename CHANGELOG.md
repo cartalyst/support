@@ -1,5 +1,11 @@
 # Changelog
 
+### v6.0.1 - 2022-04-19
+
+`FIXED`
+
+- PHP 8.1 compat.
+
 ### v6.0.0 - 2022-02-14
 
 - Updated for Laravel 9.
