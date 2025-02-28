@@ -1,7 +1,6 @@
 language: php
 
 php:
-  - 8.2
   - 8.3
 
 dist: focal
