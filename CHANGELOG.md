@@ -1,6 +1,6 @@
 # Changelog
 
-### v9.0.0 - TBA
+### v9.0.0 - 2025-02-28
 
 - Updated for Laravel 12.
 
