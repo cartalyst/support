@@ -20,10 +20,10 @@
     },
     "require-dev": {
         "cartalyst/php-cs-fixer-config": "^2.0",
-        "illuminate/mail": "^12.0",
-        "illuminate/validation": "^12.0",
-        "mockery/mockery": "^1.0",
-        "phpunit/phpunit": "^10.0",
+        "illuminate/mail": "^13.0",
+        "illuminate/validation": "^13.0",
+		"mockery/mockery": "^1.6.10",
+		"phpunit/phpunit": "^10.0.0",
         "symfony/translation": "^7.0"
     },
     "autoload": {
@@ -44,7 +44,7 @@
     "extra": {
         "component": "package",
         "branch-alias": {
-            "dev-master": "9.0.x-dev"
+            "dev-master": "10.0.x-dev"
         }
     },
     "scripts": {

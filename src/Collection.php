@@ -11,10 +11,10 @@
  * bundled with this package in the LICENSE file.
  *
  * @package    Support
- * @version    9.0.0
+ * @version    10.0.0
  * @author     Cartalyst LLC
  * @license    BSD License (3-clause)
- * @copyright  (c) 2011-2025, Cartalyst LLC
+ * @copyright  (c) 2011-2026, Cartalyst LLC
  * @link       https://cartalyst.com
  */
 
@@ -48,7 +48,7 @@ class Collection implements ArrayAccess, Countable
      *
      * @return void
      */
-    public function __construct($id, Closure $callback = null)
+    public function __construct($id, ?Closure $callback = null)
     {
         $this->id = $id;
 
@@ -105,7 +105,7 @@ class Collection implements ArrayAccess, Countable
      *
      * @return void
      */
-    public function executeCallback(Closure $callback = null)
+    public function executeCallback(?Closure $callback = null)
     {
         if ($callback instanceof Closure) {
             call_user_func($callback, $this);
